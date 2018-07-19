@@ -2,6 +2,8 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
+  this.user = null;
+
 
   this.h1 = 'Movie Bucket-List'
     this.movies = []
@@ -89,8 +91,9 @@ app.controller('MainController', ['$http', function($http){
         method: "POST",
         url: "/users",
         data: {
-          username: this.username,
-          password: this.password
+          username: this.regUsername,
+          password: this.regPassword,
+          admin: false
         }
       }).then(function(response){
         console.log(response);
@@ -104,8 +107,8 @@ app.controller('MainController', ['$http', function($http){
         method: "POST",
         url: "/sessions",
         data: {
-          username: this.username,
-          password: this.password
+          username: this.logUsername,
+          password: this.logPassword
         }
       }).then(function(response){
         console.log(response);
@@ -114,12 +117,19 @@ app.controller('MainController', ['$http', function($http){
       });
     }; // end of log in
 
+    //Function pulls the user information from the backend framework to store in the frontend framework
     this.goApp = function(){
       $http({
         method: "GET",
         url: "/log"
       }).then(function(response){
+        //Save username to test to see if register and login are working
         controller.loggedInUsername = response.data.username
+
+        //Save the whole user into the controller
+        // controller.user = response.data;
+        // console.log(response.data);
+
       },function(){
         console.log("error");
       });

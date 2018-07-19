@@ -18,9 +18,9 @@
           <h2>Register</h2>
           <form ng-submit="ctrl.createUser()">
             <label for="username">Username</label>
-            <input type="text" name="username" ng-model="ctrl.username">
+            <input type="text" name="username" ng-model="ctrl.regUsername">
             <label for="password">Password</label>
-            <input type="text" name="password" ng-model="ctrl.password">
+            <input type="text" name="password" ng-model="ctrl.regPassword">
             <input type="submit" value="Create User">
           </form>
         </div>
@@ -28,15 +28,15 @@
           <h2>Log In</h2>
           <form ng-submit="ctrl.logIn()">
             <label for="username">Username</label>
-            <input type="text" name="username" ng-model="ctrl.username">
+            <input type="text" name="username" ng-model="ctrl.logUsername">
             <label for="password">Password</label>
-            <input type="text" name="password" ng-model="ctrl.password">
+            <input type="text" name="password" ng-model="ctrl.logPassword">
             <input type="submit" value="Log In">
           </form>
         </div>
         <a href="#" ng-click="ctrl.goApp()">Click to See Info</a>
         <div class="loggedin" ng-if="ctrl.loggedInUsername">
-          <h1>Welcome!! {{ctrl.loggedInUsername}}</h1>
+          <h1>Welcome {{ctrl.loggedInUsername}}!!</h1>
         </div>
       </div>
 
