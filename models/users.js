@@ -9,9 +9,9 @@ const Schema = mongoose.Schema;
 //favMovies: is an array of saved movie IDs used to display that individuals favorite movies from the database
 const userSchema = Schema({
   username: { type: String, unique: true },
-  password: String,
-  admin: Boolean,
-  favMovies: [String]
+  password: { type: String, required: true },
+  admin: { type: Boolean, required: true },
+  favMovies: { type: [String], default: [] }
 });
 
 //Export the user module to the routes
