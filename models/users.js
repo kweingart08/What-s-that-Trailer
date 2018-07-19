@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 //Admin: is true if the user is an Admin, false for all other users
 //favMovies: is an array of saved movie IDs used to display that individuals favorite movies from the database
 const userSchema = Schema({
-  username: { type: String, unique: true },
+  username: { type: String, unique: true , required: true},
   password: { type: String, required: true },
   admin: { type: Boolean, required: true },
   favMovies: { type: [String], default: [] }
