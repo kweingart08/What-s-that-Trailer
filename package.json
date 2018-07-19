@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kweingart08/What-s-that-Trailer#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongoose": "^5.2.4"
   }
 }
