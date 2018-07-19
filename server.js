@@ -16,7 +16,13 @@ app.use(express.static("public"));
 const movieController = require("./controllers/movies.js");
 app.use("/movies", movieController);
 
+const userController = require("./controllers/users.js");
+app.use("/users", userController);
+
 //Get Routes
+app.get("/log", (req, res) => {
+
+});
 
 //Listen Route
 app.listen(port, ()=>{
