@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 //image: A Url of an image for that movie
 
 const movieSchema = mongoose.Schema({
-  title: { type: String, unique: true }
+  title: { type: String, unique: true },
   description: String,
   year: Number,
   rating: String,
