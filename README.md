@@ -1,5 +1,5 @@
 # What-s-that-Trailer
-  TBD info on what this is
+  I'm not sure about the rest of you, but how many times have you seen: a movie trailer, a poster or even a Facebook ad for an upcoming movie that looked really good... but then you completely forgot about it. Here's an app that let's you add a list of those movies to create a digital movie bucket list.
 
 
 ## Getting Started
@@ -11,7 +11,7 @@
     Google Chrome - [https://www.google.com/chrome/?brand=CHBD&gclid=CjwKCAjwma3ZBRBwEiwA-CsblPyvpR22B4RBmScNdFsqzR9hq_NR4nT8yE9sKUWpPhPRTU6JPPvV-RoCpfMQAvD_BwE&gclsrc=aw.ds&dclid=CNiA3IWs5dsCFQ4EaQodm50Pyw]
 
 ### Technologies Used
-  Technologies TBD
+    Express, Mongoose, Angular, Node.js.
 
     Heroku:
       - Heroku was used to deploy the app online.
@@ -24,7 +24,7 @@
   TBD
 
 ### Approach Taken
-  - TBD
+  The initial approach was to determine and settle on an idea, once this had taken shape it was a matter of making a chart of what needed to be done. After that we divided up the work based on preferences, skills and importance.
 
 ### Unsolved Problems / Additional Items Not Added
   TBD
