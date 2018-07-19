@@ -1,6 +1,8 @@
 const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
+  const controller = this;
+
   this.h1 = 'Movie Bucket-List'
     this.movies = []
     this.movie = ''
@@ -79,6 +81,50 @@ app.controller('MainController', ['$http', function($http){
   }
 
     this.getMovies()
+
+
+    // user Routes
+    this.createUser = function(){
+      $http({
+        method: "POST",
+        url: "/users",
+        data: {
+          username: this.username,
+          password: this.password
+        }
+      }).then(function(response){
+        console.log(response);
+      }, function(){
+        console.log("error");
+      });
+    }; //end of create user
+
+    this.logIn = function(){
+      $http({
+        method: "POST",
+        url: "/sessions",
+        data: {
+          username: this.username,
+          password: this.password
+        }
+      }).then(function(response){
+        console.log(response);
+      }, function(){
+        console.log("error");
+      });
+    }; // end of log in
+
+    this.goApp = function(){
+      $http({
+        method: "GET",
+        url: "/log"
+      }).then(function(response){
+        controller.loggedInUsername = response.data.username
+      },function(){
+        console.log("error");
+      });
+    };
+
 
   //closes controller
 }])
