@@ -5,6 +5,7 @@
     <title>What's That Trailer</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js" charset="utf-8"></script>
     <script src="/js/app.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Merienda|Raleway:400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body ng-controller="MainController as ctrl">
@@ -15,54 +16,57 @@
         <h1>{{ctrl.h1}}</h1>
       </div>
 
-      <!-- add movie - left div -->
-      <div class="add-movie">
-        <form ng-submit="ctrl.createMovie()">
-          <fieldset>
-            <legend>Add Movie</legend>
+      <div class="bottom-content">
+        <!-- add movie - left div -->
+        <div class="add-movie">
+          <form ng-submit="ctrl.createMovie()">
+            <fieldset>
+              <legend>Add Movie</legend>
 
-            <label for="title">Title</label>
-            <input type="text" name="title" ng-model="ctrl.createForm.title"/></br>
+              <label for="title">Title</label>
+              <input type="text" name="title" ng-model="ctrl.createForm.title"/></br>
 
-            <label for="year">Year Released</label>
-            <input type="text" name="year" ng-model="ctrl.createForm.year">
+              <label for="year">Year Released</label>
+              <input type="text" name="year" ng-model="ctrl.createForm.year">
 
-            <label for="rating">Rating</label>
-            <input type="text" name="rating" ng-model="ctrl.createForm.rating">
+              <label for="rating">Rating</label>
+              <input type="text" name="rating" ng-model="ctrl.createForm.rating">
 
-            <label for="trailerUrl">Trailer URL</label>
-            <input type="text" name="trailerUrl" ng-model="ctrl.createForm.trailerUrl">
+              <label for="trailerUrl">Trailer URL</label>
+              <input type="text" name="trailerUrl" ng-model="ctrl.createForm.trailerUrl">
 
-            <label for="imbdUrl">IMDB URL</label>
-            <input type="text" name="imbdUrl" ng-model="ctrl.createForm.imbdUrl">
+              <label for="imbdUrl">IMDB URL</label>
+              <input type="text" name="imbdUrl" ng-model="ctrl.createForm.imbdUrl">
 
-            <label for="image">Image Link</label>
-            <input type="text" name="image" ng-model="image">
+              <label for="image">Image Link</label>
+              <input type="text" name="image" ng-model="image">
 
-            <label for="description">Movie Description</label>
-            <textarea ng-model="ctrl.createForm.description" name="description"></textarea></br>
+              <label for="description">Movie Description</label>
+              <textarea ng-model="ctrl.createForm.description" name="description"></textarea></br>
 
-            <input type="submit" value="Add New Movie">
-          </fieldset>
+              <input type="submit" value="Add New Movie">
+            </fieldset>
 
-        </form>
-      </div>
+          </form>
+        </div>
 
-      <!-- show added movies div -->
-      <div class="all-movies">
-        <div class="tableDiv">
-        <table>
-          <tr ng-repeat="movie in ctrl.movies">
-            <td ng-click='ctrl.updateLikes(movie)'> <img src="https://cdn.iconscout.com/public/images/icon/premium/png-512/reel-camera-movie-file-cinema-3cedaa56d2add403-512x512.png" alt="filmstrip"> {{movie.likes}}</td>
-            <td ng-dblClick= "ctrl.updateWatched(movie)"
-             ng-mouseover="ctrl.chooseOneMovie(movie)"
-             ng-class="(movie.watched ? 'watched' : '')">{{movie.title}} :</td>
-             <td class="desc"> {{movie.description}}</td>
-             <td ng-click='ctrl.deleteMovie(movie._id)'> <img src="http://www.pngmart.com/files/3/Red-Cross-Transparent-PNG.png" alt=""> </td>
-          </tr>
-        </table>
+        <!-- show added movies div -->
+        <div class="all-movies">
+          <div class="tableDiv">
+          <table>
+            <tr ng-repeat="movie in ctrl.movies">
+              <td ng-click='ctrl.updateLikes(movie)'> <img src="https://cdn.iconscout.com/public/images/icon/premium/png-512/reel-camera-movie-file-cinema-3cedaa56d2add403-512x512.png" alt="filmstrip"> {{movie.likes}}</td>
+              <td ng-dblClick= "ctrl.updateWatched(movie)"
+               ng-mouseover="ctrl.chooseOneMovie(movie)"
+               ng-class="(movie.watched ? 'watched' : '')">{{movie.title}} :</td>
+               <td class="desc"> {{movie.description}}</td>
+               <td ng-click='ctrl.deleteMovie(movie._id)'> <img src="http://www.pngmart.com/files/3/Red-Cross-Transparent-PNG.png" alt=""> </td>
+            </tr>
+          </table>
+          </div>
         </div>
       </div>
+
 
     <!-- <div class="movieDetails">
 
