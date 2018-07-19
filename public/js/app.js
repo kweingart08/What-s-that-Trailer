@@ -5,7 +5,7 @@ app.controller('MainController', ['$http', function($http){
   this.user = null;
 
 
-  this.h1 = 'Movie Bucket-List'
+  this.h1 = "What's That Trailer"
     // this.movies = []
     // this.movie = ''
 
@@ -15,7 +15,7 @@ app.controller('MainController', ['$http', function($http){
   // }
   //create movie
   // this.createForm = {}
-  this.createMovie = () => {
+  this.createMovie = function(){
     $http({
       method: 'POST',
       url: '/movies',
@@ -29,67 +29,67 @@ app.controller('MainController', ['$http', function($http){
         image: this.image
       }
       // data: this.createForm
-    }).then(response =>{
+    }).then(function(response){
       console.log(response.data);
       // this.movies.push(response.data)
       // this.createForm = {}
-      this.getMovies();
+      controller.getMovies();
     }, error =>{
       console.log(error);
     })
   }
 
-  this.getMovies = () => {
+  this.getMovies = function(){
     $http({
       method: 'GET',
       url: '/movies'
-    }).then(response =>{
-      this.movies = response.data
-    }, error => {
+    }).then(function(response){
+      controller.movies = response.data
+    }, function(){
       console.log(error);
     })
   }
 
   //delete movie
-  this.deleteMovie = (movie) =>{
+  this.deleteMovie = function(movie){
     $http({
       method: 'DELETE',
       url: '/movies/' + movie._id
-    }).then(response => {
+    }).then(function(response){
       // const removeByIndex = this.movies.findIndex(movie =>
       // movie._id ===id)
       // this.movies.splice(removeByIndex, 1)
-      this.getMovies();
-    },error => {
+      controller.getMovies();
+    },function(){
       console.log(error);
     })
   }
   //update route
-  this.updateWatched = movie => {
-    movie.watched = !movie.watched
-    $http({
-      method: 'PUT',
-      url:'/movies/' + movie._id,
-      data:{watched: movie.watched}
-    }).then(response =>{
-      console.log(response.data.watched);
-    },error =>{
-      console.log(error);
-    })
-  }
+  // this.updateWatched = movie => {
+  //   movie.watched = !movie.watched
+  //   $http({
+  //     method: 'PUT',
+  //     url:'/movies/' + movie._id,
+  //     data:{watched: movie.watched}
+  //   }).then(response =>{
+  //     console.log(response.data.watched);
+  //   },error =>{
+  //     console.log(error);
+  //   })
+  // }
 
-  this.updateLikes = movie =>{
-    movie.likes++
-    $http({
-      method: 'PUT',
-      url: '/movies/' + movie._id,
-      data: {likes: movie.likes}
-    }).then(response =>{
-      console.log(response.data.likes)
-    }, error =>{
-      console.log(error.message);
-    })
-  }
+  // this.updateLikes = movie =>{
+  //   movie.likes++
+  //   $http({
+  //     method: 'PUT',
+  //     url: '/movies/' + movie._id,
+  //     data: {likes: movie.likes}
+  //   }).then(response =>{
+  //     console.log(response.data.likes)
+  //   }, error =>{
+  //     console.log(error.message);
+  //   })
+  // }
 
   this.editMovie = function(movie){
     this.indexOfEditFormToShow = -1;
