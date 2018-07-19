@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" ng-app="MoviesApp">
+  <head>
+    <meta charset="utf-8">
+    <title>What's That Trailer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js" charset="utf-8"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body ng-controller="MainController as ctrl">
+    <div class="container">
+      <h1>{{ctrl.h1}}</h1>
+      <form ng-submit="ctrl.createMovie()">
+        <input type="text" placeholder="Movie Title" ng-model="ctrl.createForm.title"/></br>
+        Movie Description:</br> <textarea ng-model="ctrl.createForm.description" name="description" rows="4" cols="20"></textarea></br>
+        <input type="submit" value="Create New Movie Title">
+      </form>
+    <div class="tableDiv">
+    <table>
+      <tr ng-repeat="movie in ctrl.movies">
+        <td ng-click='ctrl.updateLikes(movie)'> <img src="https://cdn.iconscout.com/public/images/icon/premium/png-512/reel-camera-movie-file-cinema-3cedaa56d2add403-512x512.png" alt="filmstrip"> {{movie.likes}}</td>
+        <td ng-dblClick= "ctrl.updateWatched(movie)"
+         ng-mouseover="ctrl.chooseOneMovie(movie)"
+         ng-class="(movie.watched ? 'watched' : '')">{{movie.title}} :</td>
+         <td class="desc"> {{movie.description}}</td>
+         <td ng-click='ctrl.deleteMovie(movie._id)'> <img src="http://www.pngmart.com/files/3/Red-Cross-Transparent-PNG.png" alt=""> </td>
+      </tr>
+    </table>
+    </div>
+    <div class="movieDetails">
+
+    </div>
+    </div>
+  </body>
+</html>
