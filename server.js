@@ -1,6 +1,7 @@
 //Dependencies
 const express = require("express");
 const mongoose = require("mongoose");
+const session = require("express-session");
 const app = express();
 
 //User Heroku specific values, or local specific values
