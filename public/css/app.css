@@ -1,9 +1,13 @@
-img {
-  height:15px;
-  width:15px;
-}
-
 body {
   background-image: url("http://baltimoresportsandlife.com/wp-content/uploads/2016/07/Movies.jpg");
   background-size: cover;
+  back
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  height:15px;
+  width:15px;
 }
