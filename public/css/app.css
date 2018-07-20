@@ -1,157 +1,229 @@
-body {
-  margin: 0;
-  padding: 0;
-  color: white;
-  font-family: Raleway;
-  width: 100%;
+/******* root style ******/
+
+/* :root {
+  --honeydew: #F1FAEE;
+  --light-blue: #A8DADC;
+  --queen-blue: #457b9D;
+	--dark-imperial-blue: #123C69;
+	--space-cadet: #1D3557;
+  --desire: #E63946;
+} */
+
+/******* body and container style ******/
+html {
+	font-family: Raleway;
+	text-align: center;
 }
 
-img {
-  height:15px;
-  width:15px;
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
+	width: 100%;
+	margin: auto;
+}
+
+/******* nav style ******/
+nav {
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  background: black;
+  color: white;
+}
+
+nav  {
+  font-size: 0.95em;
+}
+
+.fa-video:hover {
+	color: red;
+}
+
+nav h5:hover {
+  color: red;
+}
+
+/******* home.html style ******/
+.home {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: auto;
+}
+
+.header {
+  height: 350px;
   background-image: url("http://baltimoresportsandlife.com/wp-content/uploads/2016/07/Movies.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.bottom-content {
+.add_new_movie {
+  background: black;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#add_movie {
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#add_movie:hover {
+  color: red;
+}
+
+h1 {
+  color: white;
+  font-size: 52px;
+  margin: 50px;
+}
+
+.all-movies {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px;
+	margin-top: 10px;
+  justify-content: space-between;
+}
+
+.movie_info {
+  display: flex;
+  width: 48%;
+  height: 250px;
+  justify-content: flex-start;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.movie-pic {
+  width: 40%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.movie-content {
   display: flex;
   flex-direction: column;
-  width: 95%;
-  justify-content: center;
-  align-items: center;
+  width: 60%;
+  box-sizing: border-box;
+  justify-content: space-between;
 }
 
-.add-movie {
-  border-radius: 0 10px 10px 0;
-  box-sizing: border-box;
-  overflow: auto;
-  width: 30%;
+.options {
+  text-align: right;
 }
+
+.movie-image {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+h4 {
+  margin: 2px;
+  text-align: left;
+}
+
+i {
+  padding: 10px;
+  font-size: 22px;
+}
+
+.fa-trash-alt:hover {
+  color: red;
+}
+
+.fa-edit:hover {
+  color: blue;
+}
+
+.fa-plus-square:hover {
+  color: green;
+}
+
 
 fieldset {
-  border: 1px solid white;
-  padding: 20px;
+  text-align: left;
+  margin: 35px;
+  border: 2px solid black;
+	border-radius: 5px;
 }
 
 legend {
-  padding: 0px 10px;
-  font-weight: 500;
   font-size: 24px;
 }
 
-label {
-  font-weight: 200;
-  font-size: 20px
-  /* display: block; */
+.form-input {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  vertical-align: top;
+  width: 25%;
 }
 
 input {
-  width: 90%;
-  margin: 5px;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid white;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.75);
-  color: blue;
-  font-size: 18px;
-}
-
-input:focus {
-  outline: 0;
-  border: 1px solid blue;
-}
-
-input[type="submit"]{
-  width: auto;
-  background: blue;
-  box-shadow: 2px 2px thistle;
-  color: whitesmoke;
-  border: 0px;
+  width: 100%;
+  height: 25px;
   border-radius: 5px;
 }
 
 textarea {
- resize: none;
- width: 90%;
- margin: 5px;
- padding: 0;
- box-sizing: border-box;
- height: 150px;
- color: blue;
- border: 1px solid white;
- font-size: 18px;
- background: rgba(255, 255, 255, 0.75);
- border-radius: 5px;
- /* display: block; */
-
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
 }
 
-.all-movies {
-  font-size: 16px;
-  margin-top: 10px;
+label {
+  display: block;
 }
 
-h1 {
-  font-family: 'Merienda', cursive;
-  font-size: 48px;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-}
-
-.registration {
-  display: flex;
-}
-
-.see-user {
-  text-align: right;
-}
-
-.top-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-table {
-  background: rgba(0,0,0,0.8);
-}
-
-.loginheaders {
+input[type="submit"]{
+  width: auto;
   font-size: 18px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  width: 80%;
+  padding: 8px;
+  height: auto;
 }
 
-.topinputs {
-  max-width: 200px;
-  height: 20px;
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-  width: 80%;
+input[type="submit"]:hover {
+  color: red;
 }
 
-.toplabels {
-  font-size: 14px;
-  width: 80%;
+.movie-list {
+  text-align: left;
+  padding-left: 20px;
+  font-size: 20px;
 }
 
-#editLink {
-  color: white;
-  font-size: 22px;
+h2 {
+	margin-bottom: 0;
+}
+
+
+
+
+
+@media only screen and (max-width: 750px){
+	.movie_info {
+	  width: 100%;
+	}
 }

@@ -1,0 +1,28 @@
+ <div class="update-form-div">
+   <form ng-submit="ctrl.editMovie(movie)" ng-if="$index === ctrl.indexOfEditFormToShow">
+     <label for="title">Title</label>
+     <input type="text" name="title" ng-model="ctrl.updateTitle" placeholder="{{movie.title}}"/></br>
+
+     <label for="year">Year Released</label>
+     <input type="text" name="year" ng-model="ctrl.updateYear" placeholder="{{movie.year}}">
+
+     <label for="rating">Rating</label>
+     <input type="text" name="rating" ng-model="ctrl.updateRating" placeholder="{{movie.rating}}">
+
+     <label for="trailerUrl">Trailer URL</label>
+     <input type="text" name="trailerUrl" ng-model="ctrl.updateTrailerUrl" placeholder="{{movie.trailerUrl}}">
+
+     <label for="imbdUrl">IMDB URL</label>
+     <input type="text" name="imbdUrl" ng-model="ctrl.updateImbdUrl" placeholder="{{movie.imbdUrl}}">
+
+     <label for="image">Image Link</label>
+     <input type="text" name="image" ng-model="updateImage" placeholder="{{movie.image}}">
+
+     <label for="description">Movie Description</label>
+     <textarea ng-model="ctrl.updateDescription" name="description">{{movie.description}}hi</textarea></br>
+
+     <input type="submit" value="Edit Movie">
+     <button ng-click="ctrl.indexOfEditFormToShow = -1">Don't Update</button>
+
+   </form>
+ </div>

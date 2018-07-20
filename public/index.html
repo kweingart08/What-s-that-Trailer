@@ -3,152 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>What's That Trailer</title>
+    <!-- angular cdn -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js" charset="utf-8"></script>
+    <!-- project js ass file -->
     <script src="/js/app.js" charset="utf-8"></script>
+    <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merienda|Raleway:400,500,600" rel="stylesheet">
+    <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/skeleton.css">
+    <!-- project style sheet for home page -->
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body ng-controller="MainController as ctrl">
     <div class="container">
-
+      <!-- include nav bar partial -->
+      <nav ng-include="'partials/nav.html'"></nav>
       <!-- header div   -->
-      <div class="header">
-        <div class="top-header">
-          <h1>{{ctrl.h1}}</h1>
-          <div class="registration">
-            <div class="register">
-              <h2 class="loginheaders">Register</h2>
-              <form ng-submit="ctrl.createUser()">
-                <label for="username" class="toplabels">Username</label>
-                <input type="text" name="username" ng-model="ctrl.regUsername" class="topinputs">
-                <label for="password" class="toplabels">Password</label>
-                <input type="text" name="password" ng-model="ctrl.regPassword" class="topinputs">
-                <input type="submit" value="Create User">
-              </form>
-            </div>
-            <div class="login">
-              <h2 class="loginheaders">Log In</h2>
-              <form ng-submit="ctrl.logIn()">
-                <label for="username" class="toplabels">Username</label>
-                <input type="text" name="username" ng-model="ctrl.logUsername" class="topinputs">
-                <label for="password" class="toplabels">Password</label>
-                <input type="text" name="password" ng-model="ctrl.logPassword" class="topinputs">
-                <input type="submit" value="Log In">
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <div class="see-user">
-          <a href="#" ng-click="ctrl.goApp()" id="editLink">Click to See Info</a>
-          <div class="loggedin" ng-if="ctrl.loggedInUsername">
-            <h1>Welcome {{ctrl.loggedInUsername}}!!</h1>
-          </div>
-        </div>
+      <div class="content">
+        <div ng-include="ctrl.includePath"></div>
       </div>
-
-      <div class="bottom-content">
-        <!-- show added movies div -->
-        <div class="all-movies">
-          <div class="tableDiv">
-            <table>
-              <thead>
-                <th></th>
-                <th></th>
-                <th>Movie Title</th>
-                <th>Movie Description</th>
-                <th>Year Released</th>
-                <!-- <th>Like</th> -->
-                <th>Add to Watched List</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </thead>
-              <tr ng-repeat="movie in ctrl.movies">
-                <td ng-click="ctrl.removeMovie(movie)">Remove Movie</td>
-                <td ng-click="ctrl.addMovie(movie)">Add Movie</td>
-                <td>{{movie.title}}</td>
-                <td>{{movie.description}}</td>
-                <td>{{movie.year}}</td>
-                <!-- our model doesn't have likes -->
-                <!-- <td ng-click="ctrl.updateLikes(movie)">{{movie.likes}}</td> -->
-                <td ng-click="ctrl.addToWatch(movie)"><i class="far fa-plus-square"></i></td>
-                <td ng-click="ctrl.indexOfEditFormToShow = $index"><i class="far fa-edit"></i></td>
-                <td ng-click='ctrl.deleteMovie(movie)'><i class="far fa-trash-alt"></i></td>
-                <td>
-                   <div class="update-form-div">
-                     <form ng-submit="ctrl.editMovie(movie)" ng-if="$index === ctrl.indexOfEditFormToShow">
-                       <label for="title">Title</label>
-                       <input type="text" name="title" ng-model="ctrl.updateTitle" placeholder="{{movie.title}}"/></br>
-
-                       <label for="year">Year Released</label>
-                       <input type="text" name="year" ng-model="ctrl.updateYear" placeholder="{{movie.year}}">
-
-                       <label for="rating">Rating</label>
-                       <input type="text" name="rating" ng-model="ctrl.updateRating" placeholder="{{movie.rating}}">
-
-                       <label for="trailerUrl">Trailer URL</label>
-                       <input type="text" name="trailerUrl" ng-model="ctrl.updateTrailerUrl" placeholder="{{movie.trailerUrl}}">
-
-                       <label for="imbdUrl">IMDB URL</label>
-                       <input type="text" name="imbdUrl" ng-model="ctrl.updateImbdUrl" placeholder="{{movie.imbdUrl}}">
-
-                       <label for="image">Image Link</label>
-                       <input type="text" name="image" ng-model="updateImage" placeholder="{{movie.image}}">
-
-                       <label for="description">Movie Description</label>
-                       <textarea ng-model="ctrl.updateDescription" name="description">{{movie.description}}hi</textarea></br>
-
-                       <input type="submit" value="Edit Movie">
-                       <button ng-click="ctrl.indexOfEditFormToShow = -1">Don't Update</button>
-
-                     </form>
-                   </div>
-                 </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <!-- add movie -  div -->
-        <div class="add-movie">
-          <form ng-submit="ctrl.createMovie()">
-            <fieldset>
-              <legend>Add Movie</legend>
-
-              <label for="title">Title</label>
-              <input type="text" name="title" ng-model="ctrl.title"/></br>
-
-              <label for="year">Year Released</label>
-              <input type="text" name="year" ng-model="ctrl.year">
-
-              <label for="rating">Rating</label>
-              <input type="text" name="rating" ng-model="ctrl.rating">
-
-              <label for="trailerUrl">Trailer URL</label>
-              <input type="text" name="trailerUrl" ng-model="ctrl.trailerUrl">
-
-              <label for="imbdUrl">IMDB URL</label>
-              <input type="text" name="imbdUrl" ng-model="ctrl.imbdUrl">
-
-              <label for="image">Image Link</label>
-              <input type="text" name="image" ng-model="ctrl.image">
-
-              <label for="description">Movie Description</label>
-              <textarea ng-model="ctrl.description" name="description"></textarea></br>
-
-              <input type="submit" value="Add New Movie">
-            </fieldset>
-
-          </form>
-        </div>
-      </div>
-
-
-    <!-- <div class="movieDetails">
-
-    </div> -->
     </div>
   </body>
 </html>
