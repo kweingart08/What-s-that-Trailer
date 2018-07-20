@@ -4,6 +4,10 @@ app.controller('MainController', ['$http', function($http){
   const controller = this;
   this.user = null;
 
+  this.includePath = 'partials/home.html'
+  this.changeInclude = (path) => {
+    this.includePath = 'partials/' + path + '.html';
+  };
 
   this.h1 = "What's That Trailer"
     // this.movies = []
