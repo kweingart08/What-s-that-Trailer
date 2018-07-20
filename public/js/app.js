@@ -160,6 +160,7 @@ app.controller('MainController', ['$http', function($http){
       //Save the whole user into the controller
       // controller.user = response.data;
       // console.log(response.data);
+      // console.log(controller.user);
 
     },function(){
       console.log("error");
@@ -167,7 +168,17 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.addMovie = (movie) => {
-    console.log(`Movie that was clicked: ${movie.title}`);
+    // console.log(`Movie that was clicked: ${movie._id}`);
+    $http({
+      method: "PUT",
+      url: "/sessions/addmovie/" + movie._id
+      // data: movie._id
+    }).then( (res) => {
+      console.log("Movie Sent");
+    }, (err) => {
+      console.log("Failed to save movie");
+      // console.log(err);
+    })
   }
 
 

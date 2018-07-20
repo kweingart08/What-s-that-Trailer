@@ -49,5 +49,23 @@ router.post("/", (req, res) => {
   });
 });
 
+router.put("/addmovie/:id", (req, res) => {
+  req.session.currentUser.favMovies.push(req.params.id);
+  User.findByIdAndUpdate( req.session.currentUser._id, req.session.currentUser, { new: true }, (err, foundUser) => {
+    if(foundUser === null){
+      res.status(403).json({
+        status: 403,
+        message: "Not logged in"
+      });
+    } else {
+      res.status(202).json({
+        status: 202,
+        message: "Movie Added"
+      });
+    }
+  });
+});
+
+
 //Export routes to the controller
 module.exports = router;
