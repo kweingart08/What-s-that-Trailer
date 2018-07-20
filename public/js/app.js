@@ -60,40 +60,11 @@ app.controller('MainController', ['$http', function($http){
       method: 'DELETE',
       url: '/movies/' + movie._id
     }).then(function(response){
-      // const removeByIndex = this.movies.findIndex(movie =>
-      // movie._id ===id)
-      // this.movies.splice(removeByIndex, 1)
       controller.getMovies();
     },function(){
       console.log(error);
     })
   }
-  //update route
-  // this.updateWatched = movie => {
-  //   movie.watched = !movie.watched
-  //   $http({
-  //     method: 'PUT',
-  //     url:'/movies/' + movie._id,
-  //     data:{watched: movie.watched}
-  //   }).then(response =>{
-  //     console.log(response.data.watched);
-  //   },error =>{
-  //     console.log(error);
-  //   })
-  // }
-
-  // this.updateLikes = movie =>{
-  //   movie.likes++
-  //   $http({
-  //     method: 'PUT',
-  //     url: '/movies/' + movie._id,
-  //     data: {likes: movie.likes}
-  //   }).then(response =>{
-  //     console.log(response.data.likes)
-  //   }, error =>{
-  //     console.log(error.message);
-  //   })
-  // }
 
   this.editMovie = function(movie){
     this.indexOfEditFormToShow = -1;
@@ -111,14 +82,10 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(function(response){
         controller.getMovies();
-      // this.movies.push(response.data);
-      // this.createForm = {};
-      // controller.getMovies();
     });
   }; // end of edit Movie function
 
-  this.getMovies()
-
+  this.getMovies();
 
   // user Routes
   this.createUser = function(){
@@ -153,21 +120,22 @@ app.controller('MainController', ['$http', function($http){
   }; // end of log in
 
   //Function pulls the user information from the backend framework to store in the frontend framework
-  this.goApp = function(){
+  this.getUser = () => {
     $http({
       method: "GET",
       url: "/log"
-    }).then(function(response){
+    }).then( (response) => {
       //Save username to test to see if register and login are working
-      controller.loggedInUsername = response.data.username
+      controller.user = response.data;
+      // controller.loggedInUsername = response.data.username;
 
       //Save the whole user into the controller
       // controller.user = response.data;
-      // console.log(response.data);
+      console.log(response.data);
       // console.log(controller.user);
 
-    },function(){
-      console.log("error");
+    }, (err) => {
+      console.log("Error Getting User");
     });
   };
 

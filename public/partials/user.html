@@ -1,6 +1,6 @@
 <div class="see-user">
-  <a href="#" ng-click="ctrl.goApp()" id="editLink">Click to See Info</a>
-  <div class="loggedin" ng-if="ctrl.loggedInUsername">
-    <h1>Welcome {{ctrl.loggedInUsername}}!!</h1>
+  <a ng-click="ctrl.getUser()" id="editLink">Click to See Info</a>
+  <div class="loggedin">
+    <h1>Welcome {{ctrl.user.username}}!!</h1>
   </div>
 </div>
