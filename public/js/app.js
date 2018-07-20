@@ -8,11 +8,18 @@ app.controller('MainController', ['$http', function($http){
   this.apikey = 'apikey=' + mykey
 
   this.user = null;
+  this.movie = null;
 
   this.includePath = 'partials/home.html'
-  this.changeInclude = (path) => {
+  this.changeInclude = (path, movie) => {
     this.includePath = 'partials/' + path + '.html';
   };
+
+  this.changeMovie = (movie) => {
+    this.movie = movie;
+    this.includePath = 'partials/edit.html'
+    console.log(movie);
+  }
 
   this.h1 = "What's That Trailer"
     // this.movies = []
@@ -101,7 +108,7 @@ app.controller('MainController', ['$http', function($http){
   // }
 
   this.editMovie = function(movie){
-    this.indexOfEditFormToShow = -1;
+    this.includePath = 'partials/home.html'
     $http({
       method: "PUT",
       url: "/movies/" + movie._id,

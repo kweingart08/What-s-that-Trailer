@@ -1,12 +1,7 @@
 /******* root style ******/
 
 /* :root {
-  --honeydew: #F1FAEE;
-  --light-blue: #A8DADC;
-  --queen-blue: #457b9D;
-	--dark-imperial-blue: #123C69;
-	--space-cadet: #1D3557;
-  --desire: #E63946;
+
 } */
 
 /******* body and container style ******/
@@ -226,4 +221,49 @@ h2 {
 	.movie_info {
 	  width: 100%;
 	}
+}
+
+#welcome {
+	color: black;
+}
+
+
+
+/* register form  */
+.reg-form {
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+}
+
+.reginputs {
+	width: 40%;
+	margin: 10px;
+}
+
+.edit-form {
+	display: flex;
+	flex-direction: column;
+	margin: 30px;
+}
+
+.edit-input {
+	width: 60%;
+	margin: 10px;
+}
+
+.edit-text {
+	width: 60%;
+}
+
+#noupdate {
+  width: auto;
+  font-size: 18px;
+  padding: 8px;
+  height: auto;
+	border-radius: 5px;
+}
+
+#noupdate:hover {
+  color: red;
 }
