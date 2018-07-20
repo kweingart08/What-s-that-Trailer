@@ -1,12 +1,9 @@
 body {
-  background-image: url("http://baltimoresportsandlife.com/wp-content/uploads/2016/07/Movies.jpg");
-  background-size: cover;
-  back
-  background-repeat: no-repeat;
   margin: 0;
   padding: 0;
   color: white;
   font-family: Raleway;
+  width: 100%;
 }
 
 img {
@@ -19,6 +16,10 @@ img {
   flex-direction: column;
   width: 100%;
   margin: auto;
+  background-image: url("http://baltimoresportsandlife.com/wp-content/uploads/2016/07/Movies.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .bottom-content {
@@ -108,7 +109,7 @@ h1 {
 .header {
   display: flex;
   flex-direction: column;
-  padding: 30px 50px;;
+  padding: 50px;
 }
 
 .registration {
