@@ -114,6 +114,11 @@ app.controller('MainController', ['$http', function($http){
     }).then(function(response){
       console.log(response);
       controller.userLoggedIn = true;
+      controller.getUser();
+      controller.changeInclude('home');
+
+      controller.regUsername = "";
+      controller.regPassword = "";
     }, function(){
       console.log("error");
     });
@@ -131,19 +136,23 @@ app.controller('MainController', ['$http', function($http){
       console.log(response);
       controller.userLoggedIn = true;
       controller.getUser();
+      controller.changeInclude('home');
+
+      controller.logUsername = "";
+      controller.logPassword = "";
     }, function(){
       console.log("error");
     });
   }; // end of log in
 
   this.logOut = () => {
-    controller.userLoggedIn = false;
-    controller.changeInclude('home');
     $http({
       method: "DELETE",
       url: "/sessions"
     }).then( (res) => {
       console.log(res);
+      controller.userLoggedIn = false;
+      controller.changeInclude('home');
     }, (err) => {
       console.log("Failed to log user out");
     })
