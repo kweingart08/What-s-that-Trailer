@@ -3,10 +3,16 @@ const app = angular.module('MoviesApp', [])
 app.controller('MainController', ['$http', function($http){
   const controller = this;
   const mykey = config.SECRET_KEY;
-  
-  this.user = null;
+
   this.baseURL = 'http://www.omdbapi.com/?'
   this.apikey = 'apikey=' + mykey
+
+  this.user = null;
+
+  this.includePath = 'partials/home.html'
+  this.changeInclude = (path) => {
+    this.includePath = 'partials/' + path + '.html';
+  };
 
   this.h1 = "What's That Trailer"
     // this.movies = []
