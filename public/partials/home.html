@@ -1,0 +1,49 @@
+<div class="home">
+  <div class="header">
+      <h1>{{ctrl.h1}}</h1>
+  </div>
+
+  <div class="home-content">
+    <!-- link to add movie to home content list - will move you to the bottom of page where the form is -->
+    <div class="add_new_movie">
+    </div>
+
+    <!-- div for movie list title -->
+    <div class="movie-list">
+      <h2>Movie List</h2>
+    </div>
+
+    <!-- div to hold all movie content divs -->
+    <div class="all-movies">
+      <!-- for each movie create a new div -->
+      <div class="movie_info" ng-repeat="movie in ctrl.movies">
+        <!-- div for movie picture -->
+        <div class="movie-pic">
+          <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
+        </div>
+        <!-- div for movie info and buttons -->
+        <div class="movie-content">
+          <!-- top div that includes info -->
+          <div class="info">
+            <h4>TITLE: {{movie.title}}</h4>
+            <h4>YEAR RELEASED: {{movie.year}}</h4>
+            <h4>RATING: {{movie.rating}}</h4>
+            <h4>DESCRIPTION: {{movie.description}}</h4>
+          </div>
+          <!-- bottom div inclues buttons to click -->
+          <div class="options">
+            <!-- add movie to watch list icon -->
+            <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn"></i>
+            <!-- edit movie icon -->
+            <!-- need to pass this movie to the edit form -->
+            <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn"><i class="far fa-edit"></i></a>
+            <!-- delete movie icon -->
+            <i class="far fa-trash-alt" ng-if="ctrl.userLoggedIn" ng-click='ctrl.deleteMovie(movie)'></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,6 @@
+<i class="fas fa-video" ng-click="ctrl.changeInclude('home')"></i>
+<h5 ng-click="ctrl.changeInclude('new_movie')" ng-if="ctrl.userLoggedIn">Add Movie</h5>
+<h5 ng-click="ctrl.changeInclude('user')" ng-if="ctrl.userLoggedIn" ng-mouseover="ctrl.getUser()">See My Movies</h5>
+<h5 ng-click="ctrl.changeInclude('register')">Register</h5>
+<h5 ng-click="ctrl.changeInclude('login')" ng-if="!ctrl.userLoggedIn">Log In</h5>
+<h5 ng-click="ctrl.logOut()" ng-if="ctrl.userLoggedIn">Log Out</h5>

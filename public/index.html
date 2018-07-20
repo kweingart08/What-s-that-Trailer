@@ -3,33 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>What's That Trailer</title>
+    <!-- angular cdn -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js" charset="utf-8"></script>
+    <!-- project js ass file -->
+    <!-- hiding api key -->
+    <script src="config.js" type='text/javascript' ></script>
     <script src="/js/app.js" charset="utf-8"></script>
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merienda|Raleway:400,500,600" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <!-- project style sheet for home page -->
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body ng-controller="MainController as ctrl">
     <div class="container">
-      <h1>{{ctrl.h1}}</h1>
-      <form ng-submit="ctrl.createMovie()">
-        <input type="text" placeholder="Movie Title" ng-model="ctrl.createForm.title"/></br>
-        Movie Description:</br> <textarea ng-model="ctrl.createForm.description" name="description" rows="4" cols="20"></textarea></br>
-        <input type="submit" value="Create New Movie Title">
-      </form>
-    <div class="tableDiv">
-    <table>
-      <tr ng-repeat="movie in ctrl.movies">
-        <td ng-click='ctrl.updateLikes(movie)'> <img src="https://cdn.iconscout.com/public/images/icon/premium/png-512/reel-camera-movie-file-cinema-3cedaa56d2add403-512x512.png" alt="filmstrip"> {{movie.likes}}</td>
-        <td ng-dblClick= "ctrl.updateWatched(movie)"
-         ng-mouseover="ctrl.chooseOneMovie(movie)"
-         ng-class="(movie.watched ? 'watched' : '')">{{movie.title}} :</td>
-         <td class="desc"> {{movie.description}}</td>
-         <td ng-click='ctrl.deleteMovie(movie._id)'> <img src="http://www.pngmart.com/files/3/Red-Cross-Transparent-PNG.png" alt=""> </td>
-      </tr>
-    </table>
-    </div>
-    <div class="movieDetails">
-
-    </div>
+      <!-- include nav bar partial -->
+      <nav ng-include="'partials/nav.html'"></nav>
+      <!-- header div   -->
+      <div class="content">
+        <div ng-include="ctrl.includePath"></div>
+      </div>
     </div>
   </body>
 </html>

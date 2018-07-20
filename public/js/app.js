@@ -1,84 +1,237 @@
 const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
-  this.h1 = 'Movie Bucket-List'
-    this.movies = []
-    this.movie = ''
+  const controller = this;
+  // const mykey = config.SECRET_KEY;
 
-    this.chooseOneMovie = movie =>{
-      this.movie = movie
-      console.log(this.movie.title);
-    }
-    //create movie
-    this.createForm = {}
-    this.createMovie = () => {
+  // this.baseURL = 'http://www.omdbapi.com/?'
+  // this.apikey = 'apikey=' + mykey
 
-      $http({
-        method: 'POST',
-        url: '/movies',
-        data: this.createForm
-      }).then(response =>{
-        // console.log(response.data);
-        this.movies.push(response.data)
-        this.createForm = {}
-      }, error =>{
-        console.log(error);
-      })
-    }
+  this.user = null;
+  this.userLoggedIn = false;
+  this.movie = null;
 
-    this.getMovies = () => {
-      $http({
-        method: 'GET',
-        url: '/movies'
-      }).then(response =>{
-        this.movies = response.data
-      }, error => {
-        console.log(error);
-      })
-    }
 
-    //delete movie
-    this.deleteMovie = (id) =>{
-      $http({
-        method: 'DELETE',
-        url: '/movies/' + id
-      }).then(response => {
-        const removeByIndex = this.movies.findIndex(movie =>
-        movie._id ===id)
-        this.movies.splice(removeByIndex, 1)
-      },error => {
-        console.log(error);
-      })
-    }
-    //update route
-    this.updateWatched = movie => {
-      movie.watched = !movie.watched
-      $http({
-        method: 'PUT',
-        url:'/movies/' + movie._id,
-        data:{watched: movie.watched}
-      }).then(response =>{
-        console.log(response.data.watched);
-      },error =>{
-        console.log(error);
-      })
-    }
+  this.includePath = 'partials/home.html'
+  this.changeInclude = (path, movie) => {
+    this.includePath = 'partials/' + path + '.html';
+  };
 
-    this.updateLikes = movie =>{
+  this.changeMovie = (movie) => {
+    this.movie = movie;
+    this.includePath = 'partials/edit.html'
+    console.log(movie);
+  }
 
-    movie.likes++
+  this.h1 = "What's That Trailer"
+    // this.movies = []
+    // this.movie = ''
+
+  // this.chooseOneMovie = movie =>{
+  //   this.movie = movie
+  //   console.log(this.movie.title);
+  // }
+  //create movie
+  // this.createForm = {}
+  this.createMovie = function(){
     $http({
-      method: 'PUT',
-      url: '/movies/' + movie._id,
-      data: {likes: movie.likes}
-    }).then(response =>{
-      console.log(response.data.likes)
+      method: 'POST',
+      url: '/movies',
+      data:
+      {
+        title: this.title,
+        description: this.description,
+        year: this.year,
+        rating: this.rating,
+        trailerUrl: this.trailerUrl,
+        imbdUrl: this.imbdUrl,
+        image: this.image
+      }
+      // data: this.createForm
+    }).then(function(response){
+      console.log(response.data);
+      // this.movies.push(response.data)
+      // this.createForm = {}
+      controller.title = "";
+      controller.description = "";
+      controller.year = "";
+      controller.rating = "";
+      controller.trailerUrl = "";
+      controller.imbdUrl = "";
+      controller.image = "";
+
+      controller.getMovies();
+      controller.changeInclude('home');
     }, error =>{
-      console.log(error.message);
+      console.log(error);
     })
   }
 
-    this.getMovies()
+  this.getMovies = function(){
+    $http({
+      method: 'GET',
+      url: '/movies'
+    }).then(function(response){
+      controller.movies = response.data
+    }, function(){
+      console.log(error);
+    })
+  }
+
+  //delete movie
+  this.deleteMovie = function(movie){
+    $http({
+      method: 'DELETE',
+      url: '/movies/' + movie._id
+    }).then(function(response){
+      controller.getMovies();
+    },function(){
+      console.log(error);
+    })
+  }
+
+  this.editMovie = function(movie){
+    this.includePath = 'partials/home.html'
+    $http({
+      method: "PUT",
+      url: "/movies/" + movie._id,
+      data: {
+        title: this.updateTitle,
+        description: this.updateDescription,
+        year: this.updateYear,
+        rating: this.updateRating,
+        trailerUrl: this.updateTrailerUrl,
+        imbdUrl: this.updateImbdUrl,
+        image: this.updateImage
+      }
+    }).then(function(response){
+        controller.getMovies();
+        controller.updateTitle = "";
+        controller.updateDescription = "";
+        controller.updateYear = "";
+        controller.updateRating = "";
+        controller.updateTrailerUrl = "";
+        controller.updateImbdUrl = "";
+        controller.updateImag = "";
+
+    }, (err) => {
+      console.log("Error updaing movie");
+    });
+  }; // end of edit Movie function
+
+  this.getMovies();
+
+  // user Routes
+  this.createUser = function(){
+    $http({
+      method: "POST",
+      url: "/users",
+      data: {
+        username: this.regUsername,
+        password: this.regPassword,
+        admin: false
+      }
+    }).then(function(response){
+      console.log(response);
+      controller.userLoggedIn = true;
+      controller.getUser();
+      controller.changeInclude('home');
+
+      controller.regUsername = "";
+      controller.regPassword = "";
+    }, function(){
+      console.log("error");
+    });
+  }; //end of create user
+
+  this.logIn = function(){
+    $http({
+      method: "POST",
+      url: "/sessions",
+      data: {
+        username: this.logUsername,
+        password: this.logPassword
+      }
+    }).then(function(response){
+      console.log(response);
+      controller.userLoggedIn = true;
+      controller.getUser();
+      controller.changeInclude('home');
+
+      controller.logUsername = "";
+      controller.logPassword = "";
+    }, function(){
+      console.log("error");
+    });
+  }; // end of log in
+
+  this.logOut = () => {
+    $http({
+      method: "DELETE",
+      url: "/sessions"
+    }).then( (res) => {
+      console.log(res);
+      controller.userLoggedIn = false;
+      controller.changeInclude('home');
+    }, (err) => {
+      console.log("Failed to log user out");
+    })
+
+  }
+
+  //Function pulls the user information from the backend framework to store in the frontend framework
+  this.getUser = () => {
+    $http({
+      method: "GET",
+      url: "/log"
+    }).then( (response) => {
+      //Save the user onto the controller
+      controller.user = response.data;
+      // console.log(response.data);
+
+      this.getUserMovies();
+    }, (err) => {
+      console.log("Error Getting User");
+    });
+  };
+
+  //Function pulls the subset of movies from the user's database
+  this.getUserMovies = () => {
+    $http({
+      method: "GET",
+      url: "/sessions/usermovies"
+    }).then( (res) => {
+      controller.savedMovies = res.data;
+      // console.log(res);
+    }, (err) => {
+      console.log("Failed to load user movies");
+    })
+  }
+
+  //Function adds a movie to the users favorite movie array
+  this.addMovie = (movie) => {
+    $http({
+      method: "PUT",
+      url: "/sessions/addmovie/" + movie._id
+    }).then( (res) => {
+      console.log(res);
+    }, (err) => {
+      console.log("Failed to save movie");
+    });
+  }
+
+  this.removeMovie = (movie) => {
+    $http({
+      method: "PUT",
+      url: "/sessions/removemovie/" + movie._id
+    }).then( (res) => {
+      // console.log(res);
+      this.getUserMovies();
+    }, (err) => {
+      console.log("Failed to remove movie");
+    });
+  }
+
 
   //closes controller
 }])

@@ -1,9 +1,274 @@
-img {
-  height:15px;
-  width:15px;
+/******* root style ******/
+
+/* :root {
+
+} */
+
+/******* body and container style ******/
+html {
+	font-family: Raleway;
+	text-align: center;
 }
 
 body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+	width: 100%;
+	margin: auto;
+}
+
+/******* nav style ******/
+nav {
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  background: black;
+  color: white;
+}
+
+nav  {
+  font-size: 0.95em;
+}
+
+.fa-video:hover {
+	color: red;
+}
+
+nav h5:hover {
+  color: red;
+}
+
+/******* home.html style ******/
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header {
+  height: 350px;
   background-image: url("http://baltimoresportsandlife.com/wp-content/uploads/2016/07/Movies.jpg");
   background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.add_new_movie {
+  background: black;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#add_movie {
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#add_movie:hover {
+  color: red;
+}
+
+h1 {
+  color: white;
+  font-size: 52px;
+  margin: 50px;
+}
+
+.all-movies {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px;
+	margin-top: 10px;
+  justify-content: space-between;
+}
+
+.movie_info {
+  display: flex;
+  width: 48%;
+  height: 250px;
+  justify-content: flex-start;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.movie-pic {
+  width: 40%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.movie-content {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.options {
+  text-align: right;
+}
+
+.movie-image {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+h4 {
+  margin: 2px;
+  text-align: left;
+}
+
+i {
+  padding: 10px;
+  font-size: 22px;
+}
+
+.fa-trash-alt:hover {
+  color: red;
+}
+
+.fa-edit:hover {
+  color: blue;
+}
+
+.fa-plus-square:hover {
+  color: green;
+}
+
+
+fieldset {
+  text-align: left;
+  margin: 35px;
+  border: 2px solid black;
+	border-radius: 5px;
+}
+
+legend {
+  font-size: 24px;
+}
+
+.form-input {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  vertical-align: top;
+  width: 25%;
+}
+
+input {
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+	resize: none;
+}
+
+label {
+  display: block;
+}
+
+input[type="submit"]{
+  width: auto;
+  font-size: 18px;
+  padding: 8px;
+  height: auto;
+}
+
+input[type="submit"]:hover {
+  color: red;
+}
+
+.movie-list {
+  text-align: left;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+h2 {
+	margin-bottom: 0;
+}
+
+
+
+
+
+@media only screen and (max-width: 750px){
+	.movie_info {
+	  width: 100%;
+	}
+}
+
+#welcome {
+	color: black;
+}
+
+
+
+/* register form  */
+.reg-form {
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+}
+
+.reginputs {
+	width: 40%;
+	margin: 10px;
+}
+
+.edit-form {
+	display: flex;
+	flex-direction: column;
+	margin: 30px;
+}
+
+.edit-input {
+	width: 60%;
+	margin: 10px;
+}
+
+.edit-text {
+	width: 60%;
+}
+
+#noupdate {
+  width: auto;
+  font-size: 18px;
+  padding: 8px;
+  height: auto;
+	border-radius: 5px;
+}
+
+#noupdate:hover {
+  color: red;
+}
+
+.movie-list > h2 {
+	text-align: center;
 }

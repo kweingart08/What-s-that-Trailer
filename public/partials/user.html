@@ -1,0 +1,34 @@
+<div class="see-user">
+
+  <div class="loggedin">
+    <h2>{{ctrl.user.username}} saved movies</h2>
+    <!-- div to hold all movie content divs -->
+    <div class="all-movies">
+      <!-- for each movie create a new div -->
+      <div class="movie_info" ng-repeat="movie in ctrl.savedMovies">
+        <!-- div for movie picture -->
+        <div class="movie-pic">
+          <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
+        </div>
+        <!-- div for movie info and buttons -->
+        <div class="movie-content">
+          <!-- top div that includes info -->
+          <div class="info">
+            <h4>TITLE: {{movie.title}}</h4>
+            <h4>YEAR RELEASED: {{movie.year}}</h4>
+            <h4>RATING: {{movie.rating}}</h4>
+            <h4>DESCRIPTION: {{movie.description}}</h4>
+          </div>
+          <!-- bottom div inclues buttons to click -->
+          <div class="options">
+            <!-- edit movie icon -->
+            <i class="far fa-edit" ng-click="ctrl.indexOfEditFormToShow = $index"></i>
+            <!-- delete movie icon -->
+            <i class="far fa-trash-alt" ng-click="ctrl.removeMovie(movie)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
