@@ -130,20 +130,16 @@ app.controller('MainController', ['$http', function($http){
       method: "GET",
       url: "/log"
     }).then( (response) => {
-      //Save username to test to see if register and login are working
+      //Save the user onto the controller
       controller.user = response.data;
-      // controller.loggedInUsername = response.data.username;
 
-      //Save the whole user into the controller
-      // controller.user = response.data;
-      // console.log(response.data);
-      // console.log(controller.user);
-
+      this.getUserMovies();
     }, (err) => {
       console.log("Error Getting User");
     });
   };
 
+  //Function pulls the subset of movies from the user's database
   this.getUserMovies = () => {
     $http({
       method: "GET",
@@ -162,7 +158,6 @@ app.controller('MainController', ['$http', function($http){
       method: "PUT",
       url: "/sessions/addmovie/" + movie._id
     }).then( (res) => {
-      // console.log("Movie Sent");
       console.log(res);
     }, (err) => {
       console.log("Failed to save movie");
@@ -174,8 +169,7 @@ app.controller('MainController', ['$http', function($http){
       method: "PUT",
       url: "/sessions/removemovie/" + movie._id
     }).then( (res) => {
-      // console.log("Movie Removed");
-      console.log(res);
+      // console.log(res);
       this.getUserMovies();
     }, (err) => {
       console.log("Failed to remove movie");
