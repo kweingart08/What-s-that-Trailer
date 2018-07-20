@@ -2,8 +2,11 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
+  const mykey = config.SECRET_KEY;
+  
   this.user = null;
-
+  this.baseURL = 'http://www.omdbapi.com/?'
+  this.apikey = 'apikey=' + mykey
 
   this.h1 = "What's That Trailer"
     // this.movies = []
