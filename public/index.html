@@ -51,7 +51,63 @@
       </div>
 
       <div class="bottom-content">
-        <!-- add movie - left div -->
+        <!-- show added movies div -->
+        <div class="all-movies">
+          <div class="tableDiv">
+            <table>
+              <thead>
+                <th>Movie Title</th>
+                <th>Movie Description</th>
+                <th>Year Released</th>
+                <!-- <th>Like</th> -->
+                <th>Add to Watched List</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </thead>
+              <tr ng-repeat="movie in ctrl.movies">
+                <td>{{movie.title}}</td>
+                <td>{{movie.description}}</td>
+                <td>{{movie.year}}</td>
+                <!-- our model doesn't have likes -->
+                <!-- <td ng-click="ctrl.updateLikes(movie)">{{movie.likes}}</td> -->
+                <td ng-click="ctrl.addToWatch(movie)"><i class="far fa-plus-square"></i></td>
+                <td ng-click="ctrl.indexOfEditFormToShow = $index"><i class="far fa-edit"></i></td>
+                <td ng-click='ctrl.deleteMovie(movie)'><i class="far fa-trash-alt"></i></td>
+                <td>
+                   <div class="update-form-div">
+                     <form ng-submit="ctrl.editMovie(movie)" ng-if="$index === ctrl.indexOfEditFormToShow">
+                       <label for="title">Title</label>
+                       <input type="text" name="title" ng-model="ctrl.updateTitle" placeholder="{{movie.title}}"/></br>
+
+                       <label for="year">Year Released</label>
+                       <input type="text" name="year" ng-model="ctrl.updateYear" placeholder="{{movie.year}}">
+
+                       <label for="rating">Rating</label>
+                       <input type="text" name="rating" ng-model="ctrl.updateRating" placeholder="{{movie.rating}}">
+
+                       <label for="trailerUrl">Trailer URL</label>
+                       <input type="text" name="trailerUrl" ng-model="ctrl.updateTrailerUrl" placeholder="{{movie.trailerUrl}}">
+
+                       <label for="imbdUrl">IMDB URL</label>
+                       <input type="text" name="imbdUrl" ng-model="ctrl.updateImbdUrl" placeholder="{{movie.imbdUrl}}">
+
+                       <label for="image">Image Link</label>
+                       <input type="text" name="image" ng-model="updateImage" placeholder="{{movie.image}}">
+
+                       <label for="description">Movie Description</label>
+                       <textarea ng-model="ctrl.updateDescription" name="description">{{movie.description}}hi</textarea></br>
+
+                       <input type="submit" value="Edit Movie">
+                       <button ng-click="ctrl.indexOfEditFormToShow = -1">Don't Update</button>
+
+                     </form>
+                   </div>
+                 </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- add movie -  div -->
         <div class="add-movie">
           <form ng-submit="ctrl.createMovie()">
             <fieldset>
@@ -82,63 +138,6 @@
             </fieldset>
 
           </form>
-        </div>
-
-        <!-- show added movies div -->
-        <div class="all-movies">
-          <div class="tableDiv">
-          <table>
-            <thead>
-              <th>Movie Title</th>
-              <th>Movie Description</th>
-              <th>Year Released</th>
-              <!-- <th>Like</th> -->
-              <th>Add to Watched List</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </thead>
-            <tr ng-repeat="movie in ctrl.movies">
-              <td>{{movie.title}}</td>
-              <td>{{movie.description}}</td>
-              <td>{{movie.year}}</td>
-              <!-- our model doesn't have likes -->
-              <!-- <td ng-click="ctrl.updateLikes(movie)">{{movie.likes}}</td> -->
-              <td ng-click="ctrl.addToWatch(movie)"><i class="far fa-plus-square"></i></td>
-              <td ng-click="ctrl.indexOfEditFormToShow = $index"><i class="far fa-edit"></i></td>
-              <td ng-click='ctrl.deleteMovie(movie)'><i class="far fa-trash-alt"></i></td>
-              <td>
-                 <div class="update-form-div">
-                   <form ng-submit="ctrl.editMovie(movie)" ng-if="$index === ctrl.indexOfEditFormToShow">
-
-                     <input type="text" name="title" ng-model="ctrl.updateTitle" placeholder="{{movie.title}}"/></br>
-
-
-                     <input type="text" name="year" ng-model="ctrl.updateYear" placeholder="{{movie.year}}">
-
-
-                     <input type="text" name="rating" ng-model="ctrl.updateRating" placeholder="{{movie.rating}}">
-
-
-                     <input type="text" name="trailerUrl" ng-model="ctrl.updateTrailerUrl" placeholder="{{movie.trailerUrl}}">
-
-
-                     <input type="text" name="imbdUrl" ng-model="ctrl.updateImbdUrl" placeholder="{{movie.imbdUrl}}">
-
-
-                     <input type="text" name="image" ng-model="updateImage" placeholder="{{movie.image}}">
-
-
-                     <textarea ng-model="ctrl.updateDescription" name="description">{{movie.description}}hi</textarea></br>
-
-                     <input type="submit" value="Edit Movie">
-                     <button ng-click="ctrl.indexOfEditFormToShow = -1">Don't Update</button>
-
-                   </form>
-                 </div>
-               </td>
-            </tr>
-          </table>
-          </div>
         </div>
       </div>
 

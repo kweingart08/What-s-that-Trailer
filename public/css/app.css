@@ -23,9 +23,10 @@ img {
 
 .bottom-content {
   display: flex;
+  flex-direction: column;
   width: 95%;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-movie {
@@ -53,8 +54,8 @@ label {
 }
 
 input {
-  width: 100%;
-  margin: 0;
+  width: 90%;
+  margin: 5px;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid white;
@@ -80,8 +81,8 @@ input[type="submit"]{
 
 textarea {
  resize: none;
- width: 100%;
- margin: 0;
+ width: 90%;
+ margin: 5px;
  padding: 0;
  box-sizing: border-box;
  height: 150px;
