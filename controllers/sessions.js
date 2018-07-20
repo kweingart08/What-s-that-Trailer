@@ -49,14 +49,27 @@ router.post("/", (req, res) => {
   });
 });
 
+//PUT Routes
+//Route adds the ID of a movie to the users favMovies array
 router.put("/addmovie/:id", (req, res) => {
-  req.session.currentUser.favMovies.push(req.params.id);
+  //Find the index of the added movie
+  const movieIndex = req.session.currentUser.favMovies.indexOf(req.params.id);
+  //If the movie was not found, push it on to the array
+  if(movieIndex === -1){
+    //Push the new movie ID onto the session
+    req.session.currentUser.favMovies.push(req.params.id);
+  }
+  //Find the user in the database and update it
   User.findByIdAndUpdate( req.session.currentUser._id, req.session.currentUser, { new: true }, (err, foundUser) => {
+    //If the user isn't found
+    //Send a (403: "Not logged in") message
     if(foundUser === null){
       res.status(403).json({
         status: 403,
         message: "Not logged in"
       });
+      //Else the user was updated and
+      //Send a (202: "Movie Added") message
     } else {
       res.status(202).json({
         status: 202,
@@ -64,6 +77,36 @@ router.put("/addmovie/:id", (req, res) => {
       });
     }
   });
+});
+
+router.put("/removemovie/:id", (req, res) => {
+
+  const movieIndex = req.session.currentUser.favMovies.indexOf(req.params.id);
+  if( movieIndex != -1){
+    req.session.currentUser.favMovies.splice(movieIndex, 1);
+  } else {
+    console.log("Movie not found");
+  }
+
+  //Update the user
+  User.findByIdAndUpdate( req.session.currentUser._id, req.session.currentUser, { new: true }, (err, foundUser) => {
+    //If the user isn't found
+    //Send a (403: "Not logged in") message
+    if(foundUser === null){
+      res.status(403).json({
+        status: 403,
+        message: "Not logged in"
+      });
+      //Else the user was updated and
+      //Send a (207: "Movie Removed") message
+    } else {
+      res.status(207).json({
+        status: 207,
+        message: "Movie Removed"
+      });
+    }
+  });
+
 });
 
 
