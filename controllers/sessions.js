@@ -88,11 +88,7 @@ router.put("/removemovie/:id", (req, res) => {
   if( movieIndex != -1){
     //Remove that movie from the array
     req.session.currentUser.favMovies.splice(movieIndex, 1);
-    //If the movie is not found, send an error message
-  } else {
-    console.log("Movie not found");
   }
-
   //Find and update the user model
   User.findByIdAndUpdate( req.session.currentUser._id, req.session.currentUser, { new: true }, (err, foundUser) => {
     //If the user isn't found
@@ -114,8 +110,11 @@ router.put("/removemovie/:id", (req, res) => {
 });
 
 //GET Routes
+//Route finds a subset of movies based off of the users saved movies
 router.get("/usermovies", (req, res) => {
+  //Pull the movies with a matching ID from the users favMovies array and sort them by title
   Movie.find( { _id: { $in: req.session.currentUser.favMovies } } ).sort( { title: 1 } ).exec( (err, foundMovies) => {
+    //Return subset of movies
     res.json(foundMovies);
   });
 });

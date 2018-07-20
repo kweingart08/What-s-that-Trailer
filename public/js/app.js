@@ -8,6 +8,7 @@ app.controller('MainController', ['$http', function($http){
   // this.apikey = 'apikey=' + mykey
 
   this.user = null;
+  this.userLoggedIn = false;
 
   this.includePath = 'partials/home.html'
   this.changeInclude = (path) => {
@@ -104,6 +105,7 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(function(response){
       console.log(response);
+      controller.userLoggedIn = true;
     }, function(){
       console.log("error");
     });
@@ -119,10 +121,26 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(function(response){
       console.log(response);
+      controller.userLoggedIn = true;
+      controller.getUser();
     }, function(){
       console.log("error");
     });
   }; // end of log in
+
+  this.logOut = () => {
+    controller.userLoggedIn = false;
+    controller.changeInclude('home');
+    $http({
+      method: "DELETE",
+      url: "/sessions"
+    }).then( (res) => {
+      console.log(res);
+    }, (err) => {
+      console.log("Failed to log user out");
+    })
+
+  }
 
   //Function pulls the user information from the backend framework to store in the frontend framework
   this.getUser = () => {
@@ -132,6 +150,7 @@ app.controller('MainController', ['$http', function($http){
     }).then( (response) => {
       //Save the user onto the controller
       controller.user = response.data;
+      // console.log(response.data);
 
       this.getUserMovies();
     }, (err) => {

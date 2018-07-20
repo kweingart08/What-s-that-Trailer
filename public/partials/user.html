@@ -23,12 +23,10 @@
           </div>
           <!-- bottom div inclues buttons to click -->
           <div class="options">
-            <!-- add movie to watch list icon -->
-            <i class="far fa-plus-square" ng-click="ctrl.removeMovie(movie)"></i>
             <!-- edit movie icon -->
             <i class="far fa-edit" ng-click="ctrl.indexOfEditFormToShow = $index"></i>
             <!-- delete movie icon -->
-            <i class="far fa-trash-alt" ng-click='ctrl.deleteMovie(movie)'></i>
+            <i class="far fa-trash-alt" ng-click="ctrl.removeMovie(movie)"></i>
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ router.post("/", (req, res) => {
   req.body.password = bcrypt.hashSync( req.body.password, bcrypt.genSaltSync(10) );
   //Create a new user, send a (201: 'User Created') message if successful
   User.create( req.body, (err, createdUser) => {
+    //Newly created users are automatically logged in
     req.session.currentUser = createdUser;
     res.status(201).json({
       status: 201,
