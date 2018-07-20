@@ -117,8 +117,8 @@ app.controller('MainController', ['$http', function($http){
       controller.getUser();
       controller.changeInclude('home');
 
-      this.regUsername = "";
-      this.regPassword = "";
+      controller.regUsername = "";
+      controller.regPassword = "";
     }, function(){
       console.log("error");
     });
@@ -138,8 +138,8 @@ app.controller('MainController', ['$http', function($http){
       controller.getUser();
       controller.changeInclude('home');
 
-      this.logUsername = "";
-      this.logPassword = "";
+      controller.logUsername = "";
+      controller.logPassword = "";
     }, function(){
       console.log("error");
     });
