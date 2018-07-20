@@ -2,6 +2,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/users.js");
+const Movie = require("../models/movies.js");
 const router = express.Router();
 
 //DELETE Routes
@@ -79,16 +80,20 @@ router.put("/addmovie/:id", (req, res) => {
   });
 });
 
+//Route removes a movie from the users favMovies array
 router.put("/removemovie/:id", (req, res) => {
-
+  //Get the index of movie(:id) from the favMovies array
   const movieIndex = req.session.currentUser.favMovies.indexOf(req.params.id);
+  //If the index is found
   if( movieIndex != -1){
+    //Remove that movie from the array
     req.session.currentUser.favMovies.splice(movieIndex, 1);
+    //If the movie is not found, send an error message
   } else {
     console.log("Movie not found");
   }
 
-  //Update the user
+  //Find and update the user model
   User.findByIdAndUpdate( req.session.currentUser._id, req.session.currentUser, { new: true }, (err, foundUser) => {
     //If the user isn't found
     //Send a (403: "Not logged in") message
@@ -106,9 +111,14 @@ router.put("/removemovie/:id", (req, res) => {
       });
     }
   });
-
 });
 
+//GET Routes
+router.get("/usermovies", (req, res) => {
+  Movie.find( { _id: { $in: req.session.currentUser.favMovies } } ).sort( { title: 1 } ).exec( (err, foundMovies) => {
+    res.json(foundMovies);
+  });
+});
 
 //Export routes to the controller
 module.exports = router;

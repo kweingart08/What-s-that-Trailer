@@ -2,10 +2,10 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  const mykey = config.SECRET_KEY;
+  // const mykey = config.SECRET_KEY;
 
-  this.baseURL = 'http://www.omdbapi.com/?'
-  this.apikey = 'apikey=' + mykey
+  // this.baseURL = 'http://www.omdbapi.com/?'
+  // this.apikey = 'apikey=' + mykey
 
   this.user = null;
 
@@ -136,13 +136,25 @@ app.controller('MainController', ['$http', function($http){
 
       //Save the whole user into the controller
       // controller.user = response.data;
-      console.log(response.data);
+      // console.log(response.data);
       // console.log(controller.user);
 
     }, (err) => {
       console.log("Error Getting User");
     });
   };
+
+  this.getUserMovies = () => {
+    $http({
+      method: "GET",
+      url: "/sessions/usermovies"
+    }).then( (res) => {
+      controller.savedMovies = res.data;
+      // console.log(res);
+    }, (err) => {
+      console.log("Failed to load user movies");
+    })
+  }
 
   //Function adds a movie to the users favorite movie array
   this.addMovie = (movie) => {
@@ -164,6 +176,7 @@ app.controller('MainController', ['$http', function($http){
     }).then( (res) => {
       // console.log("Movie Removed");
       console.log(res);
+      this.getUserMovies();
     }, (err) => {
       console.log("Failed to remove movie");
     });
