@@ -37,7 +37,8 @@ app.controller('MainController', ['$http', function($http){
     $http({
       method: 'POST',
       url: '/movies',
-      data: {
+      data:
+      {
         title: this.title,
         description: this.description,
         year: this.year,
@@ -51,7 +52,16 @@ app.controller('MainController', ['$http', function($http){
       console.log(response.data);
       // this.movies.push(response.data)
       // this.createForm = {}
+      controller.title = "";
+      controller.description = "";
+      controller.year = "";
+      controller.rating = "";
+      controller.trailerUrl = "";
+      controller.imbdUrl = "";
+      controller.image = "";
+
       controller.getMovies();
+      controller.changeInclude('home');
     }, error =>{
       console.log(error);
     })
@@ -96,6 +106,16 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(function(response){
         controller.getMovies();
+        controller.updateTitle = "";
+        controller.updateDescription = "";
+        controller.updateYear = "";
+        controller.updateRating = "";
+        controller.updateTrailerUrl = "";
+        controller.updateImbdUrl = "";
+        controller.updateImag = "";
+
+    }, (err) => {
+      console.log("Error updaing movie");
     });
   }; // end of edit Movie function
 
