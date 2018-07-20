@@ -2,13 +2,15 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  const mykey = config.SECRET_KEY;
+  // const mykey = config.SECRET_KEY;
 
-  this.baseURL = 'http://www.omdbapi.com/?'
-  this.apikey = 'apikey=' + mykey
+  // this.baseURL = 'http://www.omdbapi.com/?'
+  // this.apikey = 'apikey=' + mykey
 
   this.user = null;
+  this.userLoggedIn = false;
   this.movie = null;
+
 
   this.includePath = 'partials/home.html'
   this.changeInclude = (path, movie) => {
@@ -72,40 +74,11 @@ app.controller('MainController', ['$http', function($http){
       method: 'DELETE',
       url: '/movies/' + movie._id
     }).then(function(response){
-      // const removeByIndex = this.movies.findIndex(movie =>
-      // movie._id ===id)
-      // this.movies.splice(removeByIndex, 1)
       controller.getMovies();
     },function(){
       console.log(error);
     })
   }
-  //update route
-  // this.updateWatched = movie => {
-  //   movie.watched = !movie.watched
-  //   $http({
-  //     method: 'PUT',
-  //     url:'/movies/' + movie._id,
-  //     data:{watched: movie.watched}
-  //   }).then(response =>{
-  //     console.log(response.data.watched);
-  //   },error =>{
-  //     console.log(error);
-  //   })
-  // }
-
-  // this.updateLikes = movie =>{
-  //   movie.likes++
-  //   $http({
-  //     method: 'PUT',
-  //     url: '/movies/' + movie._id,
-  //     data: {likes: movie.likes}
-  //   }).then(response =>{
-  //     console.log(response.data.likes)
-  //   }, error =>{
-  //     console.log(error.message);
-  //   })
-  // }
 
   this.editMovie = function(movie){
     this.includePath = 'partials/home.html'
@@ -123,14 +96,10 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(function(response){
         controller.getMovies();
-      // this.movies.push(response.data);
-      // this.createForm = {};
-      // controller.getMovies();
     });
   }; // end of edit Movie function
 
-  this.getMovies()
-
+  this.getMovies();
 
   // user Routes
   this.createUser = function(){
@@ -144,6 +113,7 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(function(response){
       console.log(response);
+      controller.userLoggedIn = true;
     }, function(){
       console.log("error");
     });
@@ -159,29 +129,55 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(function(response){
       console.log(response);
+      controller.userLoggedIn = true;
+      controller.getUser();
     }, function(){
       console.log("error");
     });
   }; // end of log in
 
+  this.logOut = () => {
+    controller.userLoggedIn = false;
+    controller.changeInclude('home');
+    $http({
+      method: "DELETE",
+      url: "/sessions"
+    }).then( (res) => {
+      console.log(res);
+    }, (err) => {
+      console.log("Failed to log user out");
+    })
+
+  }
+
   //Function pulls the user information from the backend framework to store in the frontend framework
-  this.goApp = function(){
+  this.getUser = () => {
     $http({
       method: "GET",
       url: "/log"
-    }).then(function(response){
-      //Save username to test to see if register and login are working
-      controller.loggedInUsername = response.data.username
-
-      //Save the whole user into the controller
-      // controller.user = response.data;
+    }).then( (response) => {
+      //Save the user onto the controller
+      controller.user = response.data;
       // console.log(response.data);
-      // console.log(controller.user);
 
-    },function(){
-      console.log("error");
+      this.getUserMovies();
+    }, (err) => {
+      console.log("Error Getting User");
     });
   };
+
+  //Function pulls the subset of movies from the user's database
+  this.getUserMovies = () => {
+    $http({
+      method: "GET",
+      url: "/sessions/usermovies"
+    }).then( (res) => {
+      controller.savedMovies = res.data;
+      // console.log(res);
+    }, (err) => {
+      console.log("Failed to load user movies");
+    })
+  }
 
   //Function adds a movie to the users favorite movie array
   this.addMovie = (movie) => {
@@ -189,7 +185,6 @@ app.controller('MainController', ['$http', function($http){
       method: "PUT",
       url: "/sessions/addmovie/" + movie._id
     }).then( (res) => {
-      // console.log("Movie Sent");
       console.log(res);
     }, (err) => {
       console.log("Failed to save movie");
@@ -201,8 +196,8 @@ app.controller('MainController', ['$http', function($http){
       method: "PUT",
       url: "/sessions/removemovie/" + movie._id
     }).then( (res) => {
-      // console.log("Movie Removed");
-      console.log(res);
+      // console.log(res);
+      this.getUserMovies();
     }, (err) => {
       console.log("Failed to remove movie");
     });
