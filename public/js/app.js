@@ -164,11 +164,37 @@ app.controller('MainController', ['$http', function($http){
       //Save the whole user into the controller
       // controller.user = response.data;
       // console.log(response.data);
+      // console.log(controller.user);
 
     },function(){
       console.log("error");
     });
   };
+
+  //Function adds a movie to the users favorite movie array
+  this.addMovie = (movie) => {
+    $http({
+      method: "PUT",
+      url: "/sessions/addmovie/" + movie._id
+    }).then( (res) => {
+      // console.log("Movie Sent");
+      console.log(res);
+    }, (err) => {
+      console.log("Failed to save movie");
+    });
+  }
+
+  this.removeMovie = (movie) => {
+    $http({
+      method: "PUT",
+      url: "/sessions/removemovie/" + movie._id
+    }).then( (res) => {
+      // console.log("Movie Removed");
+      console.log(res);
+    }, (err) => {
+      console.log("Failed to remove movie");
+    });
+  }
 
 
   //closes controller
