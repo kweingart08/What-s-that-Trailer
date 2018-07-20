@@ -18,27 +18,26 @@ img {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 30px;
+  margin: auto;
 }
 
 .bottom-content {
   display: flex;
-  flex-direction: column;
   width: 95%;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .add-movie {
   border-radius: 0 10px 10px 0;
-  padding: 15px;
   box-sizing: border-box;
   overflow: auto;
+  width: 30%;
 }
 
 fieldset {
   border: 1px solid white;
   padding: 20px;
-  margin: 20px 0;
 }
 
 legend {
@@ -55,7 +54,7 @@ label {
 
 input {
   width: 100%;
-  margin: 10px 0;
+  margin: 0;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid white;
@@ -82,8 +81,8 @@ input[type="submit"]{
 textarea {
  resize: none;
  width: 100%;
- margin: 10px 0;
- padding: 10px;
+ margin: 0;
+ padding: 0;
  box-sizing: border-box;
  height: 150px;
  color: blue;
@@ -97,9 +96,60 @@ textarea {
 
 .all-movies {
   font-size: 16px;
+  margin-top: 10px;
 }
 
 h1 {
   font-family: 'Merienda', cursive;
   font-size: 48px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 50px;;
+}
+
+.registration {
+  display: flex;
+}
+
+.see-user {
+  text-align: right;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+table {
+  background: rgba(0,0,0,0.8);
+}
+
+.loginheaders {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 80%;
+}
+
+.topinputs {
+  max-width: 200px;
+  height: 20px;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  width: 80%;
+}
+
+.toplabels {
+  font-size: 14px;
+  width: 80%;
+}
+
+#editLink {
+  color: white;
+  font-size: 22px;
 }

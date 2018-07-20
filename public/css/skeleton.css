@@ -31,7 +31,6 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
@@ -234,7 +233,7 @@ input[type="url"],
 input[type="password"],
 textarea,
 select {
-  height: 38px;
+  /* height: 38px; */
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
   background-color: #fff;
   border: 1px solid #D1D1D1;
