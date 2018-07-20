@@ -106,6 +106,16 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(function(response){
         controller.getMovies();
+        controller.updateTitle = "";
+        controller.updateDescription = "";
+        controller.updateYear = "";
+        controller.updateRating = "";
+        controller.updateTrailerUrl = "";
+        controller.updateImbdUrl = "";
+        controller.updateImag = "";
+
+    }, (err) => {
+      console.log("Error updaing movie");
     });
   }; // end of edit Movie function
 
