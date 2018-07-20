@@ -166,6 +166,10 @@ app.controller('MainController', ['$http', function($http){
     });
   };
 
+  this.addMovie = (movie) => {
+    console.log(`Movie that was clicked: ${movie.title}`);
+  }
+
 
   //closes controller
 }])
