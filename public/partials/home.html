@@ -19,7 +19,7 @@
       <div class="movie_info" ng-repeat="movie in ctrl.movies">
         <!-- div for movie picture -->
         <div class="movie-pic">
-          <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
+          <img ng-src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
         </div>
         <!-- div for movie info and buttons -->
         <div class="movie-content">
