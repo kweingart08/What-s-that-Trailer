@@ -2,7 +2,7 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  const mykey = config.SECRET_KEY;
+  const mykey = SECRET_KEY;
 
   this.baseURL = 'http://www.omdbapi.com/?'
   this.apikey = 'apikey=' + mykey
@@ -267,7 +267,7 @@ app.controller('MainController', ['$http', function($http){
   this.addNetMovie = (movie) => {
     $http({
       method: "PUT",
-      url: "/sessions/addnetmovie" + movie._id
+      url: "/sessions/addnetmovie/" + movie._id
     }).then( (res) => {
       console.log(res);
     }, (err) => {
@@ -279,12 +279,17 @@ app.controller('MainController', ['$http', function($http){
   this.removeNetMovie = (movie) => {
     $http({
       method: "PUT",
-      url: "/sessions/removenetmovie" + movie._id
+      url: "/sessions/removenetmovie/" + movie._id
     }).then( (res) => {
       console.log(res);
     }, (err) => {
       console.log("Failed to remove net movie");
     });
+  }
+
+  this.addTestMovie = (movie_id) => {
+    const my_movie = { _id: movie_id };
+    controller.addNetMovie(my_movie);
   }
 
   //closes controller
