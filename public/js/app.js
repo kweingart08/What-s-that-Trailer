@@ -269,6 +269,7 @@ app.controller('MainController', ['$http', function($http){
       url: "/sessions/addmovie/" + movie._id
     }).then( (res) => {
       console.log(res);
+      controller.getUser();
     }, (err) => {
       console.log("Failed to save movie");
     });
@@ -306,6 +307,7 @@ app.controller('MainController', ['$http', function($http){
       url: "/sessions/addnetmovie/" + movie._id
     }).then( (res) => {
       // console.log(res);
+      controller.getUser();
     }, (err) => {
       console.log("Failed to save net movie");
     });
