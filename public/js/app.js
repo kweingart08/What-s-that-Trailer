@@ -2,15 +2,18 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  const mykey = config.SECRET_KEY;
+  const mykey = SECRET_KEY;
 
   this.baseURL = 'http://www.omdbapi.com/?'
   this.apikey = 'apikey=' + mykey
   this.query = 's='
+  this.keyQuery = "i=";
 
   this.omdbTitle = ''
   this.searchOMDB = this.baseURL + this.apikey + '&' + this.query + this.omdbTitle;
+  this.netPullOMDB = this.baseURL + this.apikey + '&' + this.keyQuery;
   this.movies = []
+  this.savedMovies = [];
 
   this.user = null;
   this.userLoggedIn = false;
@@ -54,15 +57,6 @@ app.controller('MainController', ['$http', function($http){
     }
   }
 
-
-    // this.movie = ''
-
-  // this.chooseOneMovie = movie =>{
-  //   this.movie = movie
-  //   console.log(this.movie.title);
-  // }
-  //create movie
-  // this.createForm = {}
   this.createMovie = function(){
     $http({
       method: 'POST',
@@ -225,6 +219,34 @@ app.controller('MainController', ['$http', function($http){
     });
   };
 
+  this.getNetOMDB = (movie_id) => {
+    $http({
+      method: 'GET',
+      url: this.netPullOMDB + movie_id
+    }).then(response => {
+      // this.movies = response.data.Search
+      // console.log(response.data);
+      const new_movie =
+      {
+        _id: movie_id,
+        title: response.data.Title,
+        description: response.data.Plot,
+        year: response.data.Year,
+        rating: response.data.Rated,
+        // trailerUrl: movie url,
+        // imbdURL: imdb url,
+        image: response.data.Poster
+      }
+
+      controller.savedMovies.push(new_movie);
+
+      console.log(new_movie);
+
+    }),error =>{
+      console.log(error);
+    }
+  }
+
   //Function pulls the subset of movies from the user's database
   this.getUserMovies = () => {
     $http({
@@ -232,7 +254,9 @@ app.controller('MainController', ['$http', function($http){
       url: "/sessions/usermovies"
     }).then( (res) => {
       controller.savedMovies = res.data;
-      // console.log(res);
+      for(let id of controller.user.netMovies){
+        controller.getNetOMDB(id);
+      }
     }, (err) => {
       console.log("Failed to load user movies");
     })
@@ -245,13 +269,14 @@ app.controller('MainController', ['$http', function($http){
       url: "/sessions/addmovie/" + movie._id
     }).then( (res) => {
       console.log(res);
+      controller.getUser();
     }, (err) => {
       console.log("Failed to save movie");
     });
   }
 
   //Function removes a movie from the users favorite movie array
-  this.removeMovie = (movie) => {
+  this.removeUserMovie = (movie) => {
     $http({
       method: "PUT",
       url: "/sessions/removemovie/" + movie._id
@@ -263,13 +288,26 @@ app.controller('MainController', ['$http', function($http){
     });
   }
 
+  //Function checks to see if the movie being removed is an user added movie or a net added movie and calls the apropriate function to remove it
+  this.removeMovie = (movie) => {
+    //If the first two characters of the movie ID are t, then it's a net movie
+    if(movie._id.charAt(0) === "t" && movie._id.charAt(1) === "t"){
+      controller.removeNetMovie(movie);
+      //Else it is a user movie
+    } else {
+      controller.removeUserMovie(movie);
+    }
+  }
+
+
   //Function adds a movie to the users netMovie array
   this.addNetMovie = (movie) => {
     $http({
       method: "PUT",
-      url: "/sessions/addnetmovie" + movie._id
+      url: "/sessions/addnetmovie/" + movie._id
     }).then( (res) => {
-      console.log(res);
+      // console.log(res);
+      controller.getUser();
     }, (err) => {
       console.log("Failed to save net movie");
     });
@@ -279,12 +317,20 @@ app.controller('MainController', ['$http', function($http){
   this.removeNetMovie = (movie) => {
     $http({
       method: "PUT",
-      url: "/sessions/removenetmovie" + movie._id
+      url: "/sessions/removenetmovie/" + movie._id
     }).then( (res) => {
-      console.log(res);
+      // console.log(res);
+      // controller.savedMovies = [];
+      controller.getUser();
     }, (err) => {
       console.log("Failed to remove net movie");
     });
+  }
+
+  //Used for testing purposes
+  this.addTestMovie = (movie_id) => {
+    const my_movie = { _id: movie_id };
+    controller.addNetMovie(my_movie);
   }
 
   //closes controller
