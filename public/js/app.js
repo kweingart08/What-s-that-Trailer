@@ -237,6 +237,8 @@ app.controller('MainController', ['$http', function($http){
         image: response.data.Poster
       }
 
+      controller.savedMovies.push(new_movie);
+
       console.log(new_movie);
 
     }),error =>{
@@ -256,9 +258,10 @@ app.controller('MainController', ['$http', function($http){
       // console.log(controller.user.netMovies);
       for(let id of controller.user.netMovies){
       // for(let i = 0; i < controller.user.n)
-        console.log(id);
+        // console.log(id);
         controller.getNetOMDB(id);
       }
+      // console.log();
       //---------------------------------------//
       //Call omdb API
       //modify movie to display correctly
