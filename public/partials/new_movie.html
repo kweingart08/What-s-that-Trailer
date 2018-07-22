@@ -1,6 +1,10 @@
 <div class="new">
   <!-- add movie -  div -->
   <div class="add-movie" id="new_movie" name="add_movie">
+    <button ng-click="ctrl.addTestMovie('tt0076759')">Add StarWars</button>
+    <button ng-click="ctrl.addTestMovie('tt0848228')">Add Avengers</button>
+    <button ng-click="ctrl.addTestMovie('tt0074486')">Add Eraserhead</button>
+
     <form ng-submit="ctrl.createMovie()">
       <fieldset>
         <legend>Add Movie</legend>
@@ -67,9 +71,6 @@
           <input type="submit" value="Add OMDB Movie">
         </div>
         <!-- Buttons Added for testing purposes -->
-        <button ng-click="ctrl.addTestMovie('tt0076759')">Add StarWars</button>
-        <button ng-click="ctrl.addTestMovie('tt0848228')">Add Avengers</button>
-        <button ng-click="ctrl.addTestMovie('tt0074486')">Add Eraserhead</button>
       </fieldset>
     </form>
   </div>

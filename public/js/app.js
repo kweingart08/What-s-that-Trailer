@@ -318,8 +318,8 @@ app.controller('MainController', ['$http', function($http){
       url: "/sessions/removenetmovie/" + movie._id
     }).then( (res) => {
       // console.log(res);
-      controller.savedMovies = [];
-      controller.getUserMovies();
+      // controller.savedMovies = [];
+      controller.getUser();
     }, (err) => {
       console.log("Failed to remove net movie");
     });
