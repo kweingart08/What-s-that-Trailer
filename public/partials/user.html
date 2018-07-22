@@ -5,7 +5,7 @@
     <!-- div to hold all movie content divs -->
     <div class="all-movies">
       <!-- for each movie create a new div -->
-      <div class="movie_info" ng-repeat="movie in ctrl.savedMovies">
+      <div class="movie_info" ng-repeat="movie in ctrl.savedMovies | orderBy: 'title'">
         <!-- div for movie picture -->
         <div class="movie-pic">
           <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
