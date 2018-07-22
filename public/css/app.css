@@ -135,7 +135,7 @@ h1 {
   padding: 10px;
 }
 h4 {
-  margin: 2px;
+  margin: 5px;
   text-align: left;
 }
 
@@ -271,4 +271,14 @@ h2 {
 
 .movie-list > h2 {
 	text-align: center;
+}
+
+
+#search {
+	padding: 5px;
+}
+
+.title-span {
+	font-size: 18px;
+	color: #0f25c5;
 }

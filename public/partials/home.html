@@ -6,6 +6,9 @@
   <div class="home-content">
     <!-- link to add movie to home content list - will move you to the bottom of page where the form is -->
     <div class="add_new_movie">
+      <label for="Search by">
+        <input type="text" placeholder="Movie Title" ng-model="searchBox" id="search">
+      </label>
     </div>
 
     <!-- div for movie list title -->
@@ -16,7 +19,7 @@
     <!-- div to hold all movie content divs -->
     <div class="all-movies">
       <!-- for each movie create a new div -->
-      <div class="movie_info" ng-repeat="movie in ctrl.movies">
+      <div class="movie_info" ng-repeat="movie in ctrl.movies | filter: searchBox">
         <!-- div for movie picture -->
         <div class="movie-pic">
           <img ng-src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
@@ -25,10 +28,10 @@
         <div class="movie-content">
           <!-- top div that includes info -->
           <div class="info">
-            <h4>TITLE: {{movie.title}}</h4>
-            <h4>YEAR RELEASED: {{movie.year}}</h4>
-            <h4>RATING: {{movie.rating}}</h4>
-            <h4>DESCRIPTION: {{movie.description}}</h4>
+            <h4><span class="title-span">TITLE:</span> {{movie.title}}</h4>
+            <h4><span class="title-span">YEAR RELEASED:</span> {{movie.year}}</h4>
+            <h4><span class="title-span">RATING:</span> {{movie.rating}}</h4>
+            <h4><span class="title-span">DESCRIPTION:</span> {{movie.description}}</h4>
           </div>
           <!-- bottom div inclues buttons to click -->
           <div class="options">
