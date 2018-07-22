@@ -48,5 +48,25 @@
         </div>
       </fieldset>
     </form>
+    <!-- OMDB Search -->
+    <form ng-submit="ctrl.getOMDB()">
+      <fieldset>
+        <legend>Add OMDB Movie</legend>
+
+        <div class="form-input" ng-repeat"movie in ctrl.movies">
+          <label for="title">OMDB Title</label>
+          <input type="text" name="title" ng-model="ctrl.omdbTitle"/>
+                <!-- for the console log -->
+                <input type="submit" value="Search OMDB"></input>
+        </div>
+
+        </br>
+
+        <div class="form-input">
+          <!-- to add to db -->
+          <input type="submit" value="Add OMDB Movie">
+        </div>
+      </fieldset>
+    </form>
   </div>
 </div>

@@ -2,10 +2,15 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  // const mykey = config.SECRET_KEY;
+  const mykey = config.SECRET_KEY;
 
-  // this.baseURL = 'http://www.omdbapi.com/?'
-  // this.apikey = 'apikey=' + mykey
+  this.baseURL = 'http://www.omdbapi.com/?'
+  this.apikey = 'apikey=' + mykey
+  this.query = 't='
+
+  this.omdbTitle = ''
+  this.searchOMDB = this.baseURL + this.apikey + '&' + this.query + this.omdbTitle;
+  this.movies = []
 
   this.user = null;
   this.userLoggedIn = false;
@@ -24,7 +29,32 @@ app.controller('MainController', ['$http', function($http){
   }
 
   this.h1 = "What's That Trailer"
-    // this.movies = []
+
+  //OMDB search
+  this.getOMDB = () => {
+    $http({
+      method: 'GET',
+      url: this.searchOMDB + this.omdbTitle
+    }).then(response => {
+      this.movies = response.data
+      console.log(response.data);
+
+      // controller.Title = "";
+      // controller.Plot = "";
+      // controller.Year = "";
+      // controller.Rated = "";
+      //
+      // controller.Poster = "";
+      //
+      // controller.getMovies();
+      // controller.changeInclude('home');
+
+    }),error =>{
+      console.log(error);
+    }
+  }
+
+
     // this.movie = ''
 
   // this.chooseOneMovie = movie =>{
