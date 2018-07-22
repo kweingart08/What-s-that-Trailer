@@ -7,10 +7,13 @@ app.controller('MainController', ['$http', function($http){
   this.baseURL = 'http://www.omdbapi.com/?'
   this.apikey = 'apikey=' + mykey
   this.query = 's='
+  this.keyQuery = "i=";
 
   this.omdbTitle = ''
   this.searchOMDB = this.baseURL + this.apikey + '&' + this.query + this.omdbTitle;
+  this.netPullOMDB = this.baseURL + this.apikey + '&' + this.keyQuery;
   this.movies = []
+  this.savedMovies = [];
 
   this.user = null;
   this.userLoggedIn = false;
@@ -54,15 +57,6 @@ app.controller('MainController', ['$http', function($http){
     }
   }
 
-
-    // this.movie = ''
-
-  // this.chooseOneMovie = movie =>{
-  //   this.movie = movie
-  //   console.log(this.movie.title);
-  // }
-  //create movie
-  // this.createForm = {}
   this.createMovie = function(){
     $http({
       method: 'POST',
@@ -225,6 +219,31 @@ app.controller('MainController', ['$http', function($http){
     });
   };
 
+  this.getNetOMDB = (movie_id) => {
+    $http({
+      method: 'GET',
+      url: this.netPullOMDB + movie_id
+    }).then(response => {
+      // this.movies = response.data.Search
+      // console.log(response.data);
+      const new_movie =
+      {
+        title: response.data.Title,
+        description: response.data.Plot,
+        year: response.data.Year,
+        rating: response.data.Rated,
+        // trailerUrl: movie url,
+        // imbdURL: imdb url,
+        image: response.data.Poster
+      }
+
+      console.log(new_movie);
+
+    }),error =>{
+      console.log(error);
+    }
+  }
+
   //Function pulls the subset of movies from the user's database
   this.getUserMovies = () => {
     $http({
@@ -233,6 +252,18 @@ app.controller('MainController', ['$http', function($http){
     }).then( (res) => {
       controller.savedMovies = res.data;
       // console.log(res);
+      // console.log(controller.savedMovies);
+      // console.log(controller.user.netMovies);
+      for(let id of controller.user.netMovies){
+      // for(let i = 0; i < controller.user.n)
+        console.log(id);
+        controller.getNetOMDB(id);
+      }
+      //---------------------------------------//
+      //Call omdb API
+      //modify movie to display correctly
+      //Push movie onto the controller.savedMovies
+
     }, (err) => {
       console.log("Failed to load user movies");
     })
@@ -287,6 +318,7 @@ app.controller('MainController', ['$http', function($http){
     });
   }
 
+  //Used for testing purposes
   this.addTestMovie = (movie_id) => {
     const my_movie = { _id: movie_id };
     controller.addNetMovie(my_movie);
