@@ -19,10 +19,10 @@
     <!-- div to hold all movie content divs -->
     <div class="all-movies">
       <!-- for each movie create a new div -->
-      <div class="movie_info" ng-repeat="movie in ctrl.movies | filter: searchBox | orderBy: 'title'">
+      <div class="movie_info" ng-repeat="movie in ctrl.movies | filter: searchBox">
         <!-- div for movie picture -->
         <div class="movie-pic">
-          <img ng-src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
+          <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
         </div>
         <!-- div for movie info and buttons -->
         <div class="movie-content">
@@ -31,7 +31,7 @@
             <h4><span class="title-span">TITLE:</span> {{movie.title}}</h4>
             <h4><span class="title-span">YEAR RELEASED:</span> {{movie.year}}</h4>
             <h4><span class="title-span">RATING:</span> {{movie.rating}}</h4>
-            <h4><span class="title-span">DESCRIPTION:</span> {{movie.description | limitTo: 110}}</h4>
+            <h4><span class="title-span">DESCRIPTION:</span> {{movie.description}}</h4>
           </div>
           <!-- bottom div inclues buttons to click -->
           <div class="options">
