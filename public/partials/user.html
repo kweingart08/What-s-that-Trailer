@@ -17,7 +17,7 @@
             <h4>TITLE: {{movie.title}}</h4>
             <h4>YEAR RELEASED: {{movie.year}}</h4>
             <h4>RATING: {{movie.rating}}</h4>
-            <h4>DESCRIPTION: {{movie.description}}</h4>
+            <h4>DESCRIPTION: {{movie.description | limitTo: 110}}</h4>
           </div>
           <!-- bottom div inclues buttons to click -->
           <div class="options">
