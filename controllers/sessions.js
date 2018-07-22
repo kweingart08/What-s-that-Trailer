@@ -109,6 +109,64 @@ router.put("/removemovie/:id", (req, res) => {
   });
 });
 
+//Route adds the ID of a movie to the users netMovies array
+router.put("/addnetmovie/:id", (req, res) => {
+  //Find the index of the added movie
+  const movieIndex = req.session.currentUser.netMovies.indexOf(req.params.id);
+  //If the movie was not found, push it on to the array
+  if(movieIndex === -1){
+    //Push the new movie ID onto the session
+    req.session.currentUser.netMovies.push(req.params.id);
+  }
+  //Find the user in the database and update it
+  User.findByIdAndUpdate( req.session.currentUser._id, req.session.currentUser, { new: true }, (err, foundUser) => {
+    //If the user isn't found
+    //Send a (403: "Not logged in") message
+    if(foundUser === null){
+      res.status(403).json({
+        status: 403,
+        message: "Not logged in"
+      });
+      //Else the user was updated and
+      //Send a (202: "Movie Added") message
+    } else {
+      res.status(202).json({
+        status: 202,
+        message: "Movie Added"
+      });
+    }
+  });
+});
+
+//Route removes a movie from the users netMovies array
+router.put("/removenetmovie/:id", (req, res) => {
+  //Get the index of movie(:id) from the netMovies array
+  const movieIndex = req.session.currentUser.netMovies.indexOf(req.params.id);
+  //If the index is found
+  if( movieIndex != -1){
+    //Remove that movie from the array
+    req.session.currentUser.netMovies.splice(movieIndex, 1);
+  }
+  //Find and update the user model
+  User.findByIdAndUpdate( req.session.currentUser._id, req.session.currentUser, { new: true }, (err, foundUser) => {
+    //If the user isn't found
+    //Send a (403: "Not logged in") message
+    if(foundUser === null){
+      res.status(403).json({
+        status: 403,
+        message: "Not logged in"
+      });
+      //Else the user was updated and
+      //Send a (207: "Movie Removed") message
+    } else {
+      res.status(207).json({
+        status: 207,
+        message: "Movie Removed"
+      });
+    }
+  });
+});
+
 //GET Routes
 //Route finds a subset of movies based off of the users saved movies
 router.get("/usermovies", (req, res) => {

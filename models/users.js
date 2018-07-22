@@ -7,11 +7,13 @@ const Schema = mongoose.Schema;
 //Password: is the users choosen password
 //Admin: is true if the user is an Admin, false for all other users
 //favMovies: is an array of saved movie IDs used to display that individuals favorite movies from the database
+//newMovies: is an array of saved movie IDs used to display that individuals favorite movies from omdb
 const userSchema = Schema({
   username: { type: String, unique: true , required: true},
   password: { type: String, required: true },
-  admin: { type: Boolean, required: true },
-  favMovies: { type: [String], default: [] }
+  admin: { type: Boolean, default: false },
+  favMovies: { type: [String], default: [] },
+  netMovies: { type: [String], default: [] }
 });
 
 //Export the user module to the routes

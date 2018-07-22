@@ -220,6 +220,7 @@ app.controller('MainController', ['$http', function($http){
     });
   }
 
+  //Function removes a movie from the users favorite movie array
   this.removeMovie = (movie) => {
     $http({
       method: "PUT",
@@ -232,6 +233,29 @@ app.controller('MainController', ['$http', function($http){
     });
   }
 
+  //Function adds a movie to the users netMovie array
+  this.addNetMovie = (movie) => {
+    $http({
+      method: "PUT",
+      url: "/sessions/addnetmovie" + movie._id
+    }).then( (res) => {
+      console.log(res);
+    }, (err) => {
+      console.log("Failed to save net movie");
+    });
+  }
+
+  //Function removes a movie from the users netMovie array
+  this.removeNetMovie = (movie) => {
+    $http({
+      method: "PUT",
+      url: "/sessions/removenetmovie" + movie._id
+    }).then( (res) => {
+      console.log(res);
+    }, (err) => {
+      console.log("Failed to remove net movie");
+    });
+  }
 
   //closes controller
 }])
