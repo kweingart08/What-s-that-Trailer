@@ -45,6 +45,10 @@ app.get("/log", (req, res) => {
   }
 });
 
+app.get("/config", (req,res) => {
+  res.json(process.env.SECRET_KEY);
+});
+
 //Listen Route
 app.listen(port, ()=>{
   console.log("I'm listening on port: ", port);

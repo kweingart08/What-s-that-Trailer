@@ -209,7 +209,7 @@ input[type="submit"]{
   font-size: 18px;
   padding: 8px;
   height: auto;
-	margin-top: 8px;
+	margin: 8px;
 }
 
 input[type="submit"]:hover {
@@ -406,4 +406,15 @@ h6 {
 
 .aboutPage p {
 	font-size: 1.2em;
+}
+
+
+.movie_info_omdb {
+	display: flex;
+	width: 48%;
+	height: 175px;
+	justify-content: flex-start;
+	border: 2px solid black;
+	border-radius: 10px;
+	margin-top: 15px;
 }
