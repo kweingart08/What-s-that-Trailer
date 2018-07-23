@@ -12,6 +12,7 @@ app.controller('MainController', ['$http', function($http){
   this.omdbTitle = ''
   this.searchOMDB = this.baseURL + this.apikey + '&' + this.query + this.omdbTitle;
   this.netPullOMDB = this.baseURL + this.apikey + '&' + this.keyQuery;
+  this.omdbMovies = []
   this.movies = []
   this.savedMovies = [];
 
@@ -39,7 +40,7 @@ app.controller('MainController', ['$http', function($http){
       method: 'GET',
       url: this.searchOMDB + this.omdbTitle
     }).then(response => {
-      this.movies = response.data.Search
+      this.omdbMovies = response.data.Search
       console.log(response.data);
 
       // controller.Title = "";
