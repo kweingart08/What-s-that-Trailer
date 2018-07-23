@@ -15,19 +15,26 @@
     </div>
 
     <div class="all-movies">
-      <!-- movie 1 in theaters -->
-      <div class="movie_info">
+      <!-- for each movie create a new div -->
+      <div class="movie_info" ng-repeat="movie in ctrl.movies" ng-if="movie.inTheater">
+        <!-- div for movie picture -->
         <div class="movie-pic">
-          <img src="https://m.media-amazon.com/images/M/MV5BMjEwMTM3OTI1NV5BMl5BanBnXkFtZTgwNDk5NTY0NTM@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="" class="movie-image">
+          <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
         </div>
+        <!-- div for movie info and buttons -->
         <div class="movie-content">
+          <!-- top div that includes info -->
           <div class="info">
-            <h4><span class="title-span">TITLE:</span> Mamma Mia! Here We Go Again</h4>
-            <h4><span class="title-span">RATING:</span> 7.3/10</h4>
-            <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">Five years after the events of Mamma Mia! (2008), Sophie learns about her mother's past while pregnant herself.</span></h4>
+            <h4><span class="title-span">TITLE:</span> {{movie.title}}</h4>
+            <h4><span class="title-span">YEAR RELEASED:</span> {{movie.year}}</h4>
+            <h4><span class="title-span">RATING:</span> {{movie.rating}}</h4>
+
+            <!-- <h4><span class="title-span">DESCRIPTION:</span> {{movie.description}}</h4> -->
+
+            <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">{{movie.description | limitTo: 110}}</span></h4>
             <div class="flexy2">
-              <h4><a href="https://www.imdb.com/videoplayer/vi2789914649?ref_=sh_ov_vi" target="_blank" class="url-link">Trailer</a></h4>
-              <h4><a href="https://www.imdb.com/title/tt6911608/?ref_=shtt_ov_tt" target="_blank" class="url-link">IMDB</a></h4>
+              <h4 ng-if="movie.trailerUrl"><a href="{{movie.trailerUrl}}" target="_blank" class="url-link">Trailer</a></h4>
+              <h4 ng-if="movie.imbdUrl"><a href="{{movie.imbdUrl}}" target="_blank" class="url-link">IMDB</a></h4>
             </div>
           </div>
           <div class="options">
@@ -36,86 +43,6 @@
             <!-- edit movie icon -->
             <!-- need to pass this movie to the edit form -->
             <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn"><i class="far fa-edit"></i></a>
-            <!-- delete movie icon -->
-            <i class="far fa-trash-alt" ng-if="ctrl.userLoggedIn" ng-click='ctrl.deleteMovie(movie)'></i>
-          </div>
-        </div>
-      </div>
-      <!-- movie 2 in theaters -->
-      <div class="movie_info">
-        <div class="movie-pic">
-          <img src="https://m.media-amazon.com/images/M/MV5BYjcyYTk0N2YtMzc4ZC00Y2E0LWFkNDgtNjE1MzZmMGE1YjY1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY209_CR0,0,140,209_AL_.jpg" alt="" class="movie-image">
-        </div>
-        <div class="movie-content">
-          <div class="info">
-            <h4><span class="title-span">TITLE:</span> Ant-Man and the Wasp</h4>
-            <h4><span class="title-span">RATING:</span> 7.5/10</h4>
-            <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp </span></h4>
-            <div class="flexy2">
-              <h4><a href="https://www.imdb.com/videoplayer/vi4137138969?ref_=sh_ov_vi" target="_blank" class="url-link">Trailer</a></h4>
-              <h4><a href="https://www.imdb.com/title/tt5095030/?ref_=shtt_ov_tt" target="_blank" class="url-link">IMDB</a></h4>
-            </div>
-          </div>
-          <div class="options">
-            <!-- add movie to watch list icon -->
-            <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn" title="Add to My List"></i>
-            <!-- edit movie icon -->
-            <!-- need to pass this movie to the edit form -->
-            <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn"><i class="far fa-edit"></i></a>
-            <!-- delete movie icon -->
-            <i class="far fa-trash-alt" ng-if="ctrl.userLoggedIn" ng-click='ctrl.deleteMovie(movie)'></i>
-          </div>
-        </div>
-      </div>
-      <!-- movie 3 in theaters -->
-      <div class="movie_info">
-        <div class="movie-pic">
-          <img src="https://m.media-amazon.com/images/M/MV5BOGM3MzQwYzItNDA1Ny00MzIyLTg5Y2QtYTAwMzNmMDU2ZDgxXkEyXkFqcGdeQXVyMjMxOTE0ODA@._V1_UX140_CR0,0,140,209_AL_.jpg" alt="" class="movie-image">
-        </div>
-        <div class="movie-content">
-          <div class="info">
-            <h4><span class="title-span">TITLE:</span> Skyscraper</h4>
-            <h4><span class="title-span">RATING:</span> 6.2/10</h4>
-            <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">A father goes to great lengths to save his family from a burning skyscraper.</span></h4>
-            <div class="flexy2">
-              <h4><a href="https://www.imdb.com/videoplayer/vi4092050201?ref_=sh_ov_vi" target="_blank" class="url-link">Trailer</a></h4>
-              <h4><a href="https://www.imdb.com/title/tt5758778/?ref_=shtt_ov_tt" target="_blank" class="url-link">IMDB</a></h4>
-            </div>
-          </div>
-          <div class="options">
-            <!-- add movie to watch list icon -->
-            <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn" title="Add to My List"></i>
-            <!-- edit movie icon -->
-            <!-- need to pass this movie to the edit form -->
-            <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn"><i class="far fa-edit"></i></a>
-            <!-- delete movie icon -->
-            <i class="far fa-trash-alt" ng-if="ctrl.userLoggedIn" ng-click='ctrl.deleteMovie(movie)'></i>
-          </div>
-        </div>
-      </div>
-      <!-- movie 4 in theaters -->
-      <div class="movie_info">
-        <div class="movie-pic">
-          <img src="https://m.media-amazon.com/images/M/MV5BMTEzNzY0OTg0NTdeQTJeQWpwZ15BbWU4MDU3OTg3MjUz._V1_UY209_CR0,0,140,209_AL_.jpg" alt="" class="movie-image">
-        </div>
-        <div class="movie-content">
-          <div class="info">
-            <h4><span class="title-span">TITLE:</span> Incredibles 2</h4>
-            <h4><span class="title-span">RATING:</span> 8.2/10</h4>
-            <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">Bob Parr (Mr. Incredible) is left to care for the kids while Helen (Elastigirl) is out saving the world.</span></h4>
-            <div class="flexy2">
-              <h4><a href="https://www.imdb.com/videoplayer/vi3210917913?ref_=sh_ov_vi" target="_blank" class="url-link">Trailer</a></h4>
-              <h4><a href="https://www.imdb.com/title/tt3606756/?ref_=shtt_ov_tt" target="_blank" class="url-link">IMDB</a></h4>
-            </div>
-          </div>
-          <div class="options">
-            <!-- add movie to watch list icon -->
-            <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn" title="Add to My List"></i>
-            <!-- edit movie icon -->
-            <!-- need to pass this movie to the edit form -->
-            <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn"><i class="far fa-edit"></i></a>
-            <!-- delete movie icon -->
-            <i class="far fa-trash-alt" ng-if="ctrl.userLoggedIn" ng-click='ctrl.deleteMovie(movie)'></i>
           </div>
         </div>
       </div>

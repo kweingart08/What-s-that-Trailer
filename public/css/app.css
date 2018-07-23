@@ -136,6 +136,7 @@ h1 {
 .movie-image {
   height: 250px;
   width: 165px;
+	border-radius: 7px;
 }
 
 .info {
