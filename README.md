@@ -29,6 +29,7 @@
 ### Details on the App:
   This App was created with a group of three developers collaborating and using git and github for version control.
   The App consists of an MVC framework:
+  
     - Models:
       - Movies - There is a movie model schema to create a Movie.
       - Users - There is a user model schema used to create the different users for the database.
