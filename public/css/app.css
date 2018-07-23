@@ -18,6 +18,7 @@ body {
 
 .container {
 	width: 100%;
+	min-width: 650px;
 	margin: auto;
 }
 
@@ -198,6 +199,7 @@ input[type="submit"]{
   font-size: 18px;
   padding: 8px;
   height: auto;
+	margin-top: 8px;
 }
 
 input[type="submit"]:hover {
@@ -221,6 +223,13 @@ h2 {
 @media only screen and (max-width: 750px){
 	.movie_info {
 	  width: 100%;
+		font-size: 16px;
+	}
+}
+
+@media only screen and (max-width: 850px) and (min-width: 750px){
+	h4 {
+	  font-size: 14px;
 	}
 }
 
@@ -281,4 +290,15 @@ h2 {
 .title-span {
 	font-size: 18px;
 	color: #0f25c5;
+}
+
+
+.url-link {
+	color: grey;
+	text-decoration: none;
+	text-size: 0.75em;
+}
+
+.url-link:hover {
+	color: blue;
 }
