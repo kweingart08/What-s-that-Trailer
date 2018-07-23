@@ -2,6 +2,7 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
+  this.mykey = "";
 
   // USE for development
   // let mykey = config.SECRET_KEY;
@@ -11,17 +12,16 @@ app.controller('MainController', ['$http', function($http){
 
   this.getAPI = () => {
     $http({
-      method: "GET",
+      method: "POST",
       url: "/config",
+      data: this.mykey
     }).then(function(response){
-      controller.mykey = response.data;
+      console.log(response);
     }, function(){
       console.log(error);
     })
   }
-
   this.getAPI();
-
   // this.showSearch = false;
   // this.showButton = true;
   //
@@ -32,7 +32,7 @@ app.controller('MainController', ['$http', function($http){
 
 
   this.baseURL = 'http://www.omdbapi.com/?'
-  this.apikey = 'apikey=' + this.mykey
+  this.apikey = 'apikey=' + mykey
   this.query = 's='
   this.keyQuery = "i=";
 
