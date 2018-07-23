@@ -9,7 +9,7 @@ app.controller('MainController', ['$http', function($http){
 
   // USE for "production"
   // let mykey = "";
-  this.mykey;
+  this.mykey = "";
 
   this.getAPI = () => {
     $http({
