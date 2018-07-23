@@ -7,19 +7,28 @@
 /******* body and container style ******/
 html {
 	font-family: Raleway;
-	text-align: center;
+	text-align: center;'
+	box-sizing: border-box;
+	height: 100%;
+	position: relative;
 }
 
 body {
   width: 100%;
   margin: 0;
   padding: 0;
+	min-height: 100%;
+	position: relative;
 }
 
 .container {
 	width: 100%;
 	min-width: 650px;
 	margin: auto;
+	min-height: 100vh;
+	display: block;
+	position: relative;
+	padding-bottom: 45px;
 }
 
 /******* nav style ******/
@@ -306,4 +315,17 @@ h2 {
 
 .description-note {
 	font-weight: normal;
+}
+
+
+footer {
+  width: 100%;
+  background: black;
+  color: white;
+	position: absolute;
+	bottom: 0;
+}
+
+h6 {
+	font-size: 0.83em;
 }
