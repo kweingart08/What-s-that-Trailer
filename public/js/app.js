@@ -4,6 +4,15 @@ app.controller('MainController', ['$http', function($http){
   const controller = this;
   const mykey = config.SECRET_KEY;
 
+  // this.showSearch = false;
+  // this.showButton = true;
+  //
+  // this.searchToggle = () => {
+  //   this.showSearch = !this.showSearch;
+  //   this.showButton = !this.showButton;
+  // }
+
+
   this.baseURL = 'http://www.omdbapi.com/?'
   this.apikey = 'apikey=' + mykey
   this.query = 's='
@@ -70,7 +79,8 @@ app.controller('MainController', ['$http', function($http){
         rating: this.rating,
         trailerUrl: this.trailerUrl,
         imbdUrl: this.imbdUrl,
-        image: this.image
+        image: this.image,
+        inTheater: this.inTheater
       }
       // data: this.createForm
     }).then(function(response){
@@ -84,6 +94,7 @@ app.controller('MainController', ['$http', function($http){
       controller.trailerUrl = "";
       controller.imbdUrl = "";
       controller.image = "";
+      controller.inTheater = "";
 
       controller.getMovies();
       controller.changeInclude('home');

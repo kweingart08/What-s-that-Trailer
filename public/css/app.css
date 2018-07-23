@@ -136,6 +136,7 @@ h1 {
 .movie-image {
   height: 250px;
   width: 165px;
+	border-radius: 7px;
 }
 
 .info {
@@ -216,7 +217,8 @@ input[type="submit"]:hover {
 }
 
 .movie-list {
-  text-align: left;
+  display: flex;
+	flex-direction: column;
   padding-left: 20px;
   font-size: 20px;
 }
@@ -294,6 +296,7 @@ h2 {
 
 .search {
 	padding: 5px;
+	margin: 5px;
 	width: 30%;
 }
 

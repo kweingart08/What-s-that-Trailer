@@ -18,8 +18,10 @@
             <h4><span class="title-span">YEAR RELEASED:</span> {{movie.year}}</h4>
             <h4><span class="title-span">RATING:</span> {{movie.rating}}</h4>
             <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">{{movie.description | limitTo: 110}}</span></h4>
-            <h4 ng-if="movie.trailerUrl"><a href="{{movie.trailerUrl}}" target="_blank" class="url-link">Go To Trailer</a></h4>
-            <h4 ng-if="movie.imbdUrl"><a href="{{movie.imbdUrl}}" target="_blank" class="url-link">Go To IMDB Page</a></h4>
+            <div class="flexy2">
+              <h4 ng-if="movie.trailerUrl"><a href="{{movie.trailerUrl}}" target="_blank" class="url-link">TRAILER</a></h4>
+              <h4 ng-if="movie.imbdUrl"><a href="{{movie.imbdUrl}}" target="_blank" class="url-link">IMDB</a></h4>
+            </div>
           </div>
           <!-- bottom div inclues buttons to click -->
           <div class="options">
