@@ -12,10 +12,6 @@
     <!-- div for movie list title -->
     <div class="movie-list">
       <h2>Movies in Theater Now</h2>
-      <div class="new_movie">
-        <label for="Search by theater">Search Movies in Theater</label>
-          <input type="text" placeholder="Theater Movie Title" ng-model="searchBox" class="search">
-      </div>
     </div>
 
     <div class="all-movies">
@@ -120,8 +116,11 @@
     <div class="movie-list">
       <h2>Users Added Movie List</h2>
       <div class="new_movie">
-        <label for="Search by">Search Movies from Users List</label>
-          <input type="text" placeholder="User Movie Title" ng-model="searchBox" class="search">
+        <input type="submit" name="" value="Click to Search Movies" ng-click="ctrl.searchToggle()">
+        <div class="showSearch" ng-if="ctrl.showSearch">
+          <input type="text" placeholder="Search by Movie Title" ng-model="searchBox" class="search">
+          <input type="submit" ng-click="ctrl.searchToggle()" name="" value="Close">
+        </div>
       </div>
     </div>
     <!-- div to hold all movie content divs -->

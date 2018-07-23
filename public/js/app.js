@@ -4,6 +4,15 @@ app.controller('MainController', ['$http', function($http){
   const controller = this;
   const mykey = config.SECRET_KEY;
 
+  this.showSearch = false;
+  this.showButton = true;
+
+  this.searchToggle = () => {
+    this.showSearch = !this.showSearch;
+    this.showButton = !this.showButton;    
+  }
+
+
   this.baseURL = 'http://www.omdbapi.com/?'
   this.apikey = 'apikey=' + mykey
   this.query = 's='

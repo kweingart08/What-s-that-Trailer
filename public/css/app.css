@@ -216,7 +216,8 @@ input[type="submit"]:hover {
 }
 
 .movie-list {
-  text-align: left;
+  display: flex;
+	flex-direction: column;
   padding-left: 20px;
   font-size: 20px;
 }
@@ -294,6 +295,7 @@ h2 {
 
 .search {
 	padding: 5px;
+	margin: 5px;
 	width: 30%;
 }
 
