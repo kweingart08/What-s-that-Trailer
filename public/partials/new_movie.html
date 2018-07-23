@@ -55,23 +55,31 @@
       </fieldset>
     </form>
     <!-- OMDB Search -->
-    <form ng-submit="ctrl.getOMDB()">
+    <form  ng-submit="ctrl.getOMDB()">
+
       <fieldset>
         <legend>Add OMDB Movie</legend>
-
-        <div class="form-input" ng-repeat"movie in ctrl.omdbMovies">
+<!-- ng-repeat="omdb in ctrl.omdbMovies" -->
+        <div class="form-input">
           <label for="title">OMDB Title</label>
           <input type="text" name="title" ng-model="ctrl.omdbTitle"/>
                 <!-- for the console log -->
-                <input type="submit" value="Search OMDB"></input>
-        </div>
+          <input type="submit" value="Search OMDB"></input>
+        <div>
+    </form>
+        <div class="form-input" ng-repeat="omdb in ctrl.omdbMovies">
+          <form  ng-submit="ctrl.addNetMovie(omdb.imdbID)">
 
+          {{omdb.Title}}
+          {{omdb.Year}}
+          <input type="submit" value="Add OMDB Movie">
+              <!-- <img src="{{omdb.Poster}}" alt=""> -->
+
+
+            </form>
+          </div>
         </br>
 
-        <div class="form-input">
-          <!-- to add to db -->
-          <input type="submit" value="Add OMDB Movie">
-        </div>
       </fieldset>
     </form>
   </div>
