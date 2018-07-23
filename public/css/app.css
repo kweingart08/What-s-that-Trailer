@@ -134,8 +134,8 @@ h1 {
 }
 
 .movie-image {
-  max-height: 100%;
-  max-width: 100%;
+  height: 250px;
+  width: 165px;
 }
 
 .info {
