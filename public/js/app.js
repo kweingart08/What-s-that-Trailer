@@ -4,14 +4,14 @@ app.controller('MainController', ['$http', function($http){
   const controller = this;
 
   // let mykey = config.SECRET_KEY;
-  this.mykey = "";
+  let mykey = "";
 
   this.getAPI = () => {
     $http({
       method: "GET",
       url: "/config"
     }).then(function(response){
-      controller.mykey = response.data
+      mykey = response.data
     }, function(){
       console.log(error);
     })
