@@ -31,7 +31,7 @@ app.controller('MainController', ['$http', function($http){
   // }
 
 
-  this.baseURL = 'http://www.omdbapi.com/?'
+  this.baseURL = 'https://www.omdbapi.com/?'
   this.apikey = 'apikey=' + mykey
   this.query = 's='
   this.keyQuery = "i=";
