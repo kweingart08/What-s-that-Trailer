@@ -59,7 +59,7 @@
           <input type="text" name="title" ng-model="ctrl.omdbTitle"/>
                 <!-- for the console log -->
           <input type="submit" value="Search OMDB"></input>
-        <div>
+        </div>
     </form>
         <div class="form-input" ng-repeat="omdb in ctrl.omdbMovies">
           <form  ng-submit="ctrl.addNetMovie(omdb.imdbID)">
