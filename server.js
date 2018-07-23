@@ -45,8 +45,10 @@ app.get("/log", (req, res) => {
   }
 });
 
+//set up api hidden key
+const api = process.env.SECRET_KEY;
+
 app.get("/config", (req,res) => {
-  const api = process.env.SECRET_KEY;
   console.log(api);
   res.json(api);
 });
