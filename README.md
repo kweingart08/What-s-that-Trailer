@@ -45,10 +45,10 @@
       - new_movie.html - new movie page
       - register.html - register page
       - user.html - user page
-    - Controllers:
-      - Movies - this controller includes the get, post, put, and delete routes for movies.
-      - Users - this controller allows the app to create a User and go to the sessions controller.
-      - Sessions - this controller allows users to sign in and start their session online.
+  - Controllers:
+    - Movies - this controller includes the get, post, put, and delete routes for movies.
+    - Users - this controller allows the app to create a User and go to the sessions controller.
+    - Sessions - this controller allows users to sign in and start their session online.
 
     This app also includes full CRUD and authorization (sign up / log in) functionality with encrypted passwords & an authorization flow.
 
