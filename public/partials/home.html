@@ -6,16 +6,25 @@
   <div class="home-content">
     <!-- link to add movie to home content list - will move you to the bottom of page where the form is -->
     <div class="add_new_movie">
-      <label for="Search by">
-        <input type="text" placeholder="Movie Title" ng-model="searchBox" id="search">
-      </label>
+
     </div>
 
     <!-- div for movie list title -->
     <div class="movie-list">
-      <h2>Movie List</h2>
+      <h2>Movies in Theater Now</h2>
+      <div class="new_movie">
+        <label for="Search by theater">Search Movies in Theater</label>
+          <input type="text" placeholder="Theater Movie Title" ng-model="searchBox" class="search">
+      </div>
     </div>
 
+    <div class="movie-list">
+      <h2>Users Added Movie List</h2>
+      <div class="new_movie">
+        <label for="Search by">Search Movies from Users List</label>
+          <input type="text" placeholder="User Movie Title" ng-model="searchBox" class="search">
+      </div>
+    </div>
     <!-- div to hold all movie content divs -->
     <div class="all-movies">
       <!-- for each movie create a new div -->
@@ -31,12 +40,14 @@
             <h4><span class="title-span">TITLE:</span> {{movie.title}}</h4>
             <h4><span class="title-span">YEAR RELEASED:</span> {{movie.year}}</h4>
             <h4><span class="title-span">RATING:</span> {{movie.rating}}</h4>
-            <h4><span class="title-span">DESCRIPTION:</span> {{movie.description | limitTo: 110}}</h4>
+            <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">{{movie.description | limitTo: 110}}</span></h4>
+            <h4 ng-if="movie.trailerUrl"><a href="{{movie.trailerUrl}}" target="_blank" class="url-link">Go To Trailer</a></h4>
+            <h4 ng-if="movie.imbdUrl"><a href="{{movie.imbdUrl}}" target="_blank" class="url-link">Go To IMDB Page</a></h4>
           </div>
           <!-- bottom div inclues buttons to click -->
           <div class="options">
             <!-- add movie to watch list icon -->
-            <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn"></i>
+            <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn" title="Add to My List"></i>
             <!-- edit movie icon -->
             <!-- need to pass this movie to the edit form -->
             <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn"><i class="far fa-edit"></i></a>
