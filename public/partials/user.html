@@ -1,11 +1,11 @@
 <div class="see-user">
 
-  <div class="loggedin">
+  <div class="loggedin" ng-cloak>
     <h2>{{ctrl.user.username}} saved movies</h2>
     <!-- div to hold all movie content divs -->
     <div class="all-movies">
       <!-- for each movie create a new div -->
-      <div class="movie_info" ng-repeat="movie in ctrl.savedMovies">
+      <div class="movie_info" ng-repeat="movie in ctrl.savedMovies | orderBy: 'title'">
         <!-- div for movie picture -->
         <div class="movie-pic">
           <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
@@ -14,15 +14,17 @@
         <div class="movie-content">
           <!-- top div that includes info -->
           <div class="info">
-            <h4>TITLE: {{movie.title}}</h4>
-            <h4>YEAR RELEASED: {{movie.year}}</h4>
-            <h4>RATING: {{movie.rating}}</h4>
-            <h4>DESCRIPTION: {{movie.description}}</h4>
+            <h4><span class="title-span">TITLE:</span> {{movie.title}}</h4>
+            <h4><span class="title-span">YEAR RELEASED:</span> {{movie.year}}</h4>
+            <h4><span class="title-span">RATING:</span> {{movie.rating}}</h4>
+            <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">{{movie.description | limitTo: 110}}</span></h4>
+            <div class="flexy2">
+              <h4 ng-if="movie.trailerUrl"><a href="{{movie.trailerUrl}}" target="_blank" class="url-link">TRAILER</a></h4>
+              <h4 ng-if="movie.imbdUrl"><a href="{{movie.imbdUrl}}" target="_blank" class="url-link">IMDB</a></h4>
+            </div>
           </div>
           <!-- bottom div inclues buttons to click -->
           <div class="options">
-            <!-- edit movie icon -->
-            <i class="far fa-edit" ng-click="ctrl.indexOfEditFormToShow = $index"></i>
             <!-- delete movie icon -->
             <i class="far fa-trash-alt" ng-click="ctrl.removeMovie(movie)"></i>
           </div>

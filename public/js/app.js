@@ -2,15 +2,32 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  // const mykey = config.SECRET_KEY;
+  const mykey = config.SECRET_KEY;
 
-  // this.baseURL = 'http://www.omdbapi.com/?'
-  // this.apikey = 'apikey=' + mykey
+  // this.showSearch = false;
+  // this.showButton = true;
+  //
+  // this.searchToggle = () => {
+  //   this.showSearch = !this.showSearch;
+  //   this.showButton = !this.showButton;
+  // }
+
+
+  this.baseURL = 'http://www.omdbapi.com/?'
+  this.apikey = 'apikey=' + mykey
+  this.query = 's='
+  this.keyQuery = "i=";
+
+  this.omdbTitle = ''
+  this.searchOMDB = this.baseURL + this.apikey + '&' + this.query + this.omdbTitle;
+  this.netPullOMDB = this.baseURL + this.apikey + '&' + this.keyQuery;
+  this.omdbMovies = []
+  this.movies = []
+  this.savedMovies = [];
 
   this.user = null;
   this.userLoggedIn = false;
-  this.movie = null;
-
+  this.movie = {};
 
   this.includePath = 'partials/home.html'
   this.changeInclude = (path, movie) => {
@@ -18,21 +35,38 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.changeMovie = (movie) => {
-    this.movie = movie;
-    this.includePath = 'partials/edit.html'
+    controller.movie = movie;
+    controller.movie2 = movie;
+    controller.includePath = 'partials/edit.html'
     console.log(movie);
   }
 
   this.h1 = "What's That Trailer"
-    // this.movies = []
-    // this.movie = ''
 
-  // this.chooseOneMovie = movie =>{
-  //   this.movie = movie
-  //   console.log(this.movie.title);
-  // }
-  //create movie
-  // this.createForm = {}
+  //OMDB search
+  this.getOMDB = () => {
+    $http({
+      method: 'GET',
+      url: this.searchOMDB + this.omdbTitle
+    }).then(response => {
+      this.omdbMovies = response.data.Search
+      console.log(response.data);
+
+      // controller.Title = "";
+      // controller.Plot = "";
+      // controller.Year = "";
+      // controller.Rated = "";
+      //
+      // controller.Poster = "";
+      //
+      // controller.getMovies();
+      // controller.changeInclude('home');
+
+    }),error =>{
+      console.log(error);
+    }
+  }
+
   this.createMovie = function(){
     $http({
       method: 'POST',
@@ -45,7 +79,8 @@ app.controller('MainController', ['$http', function($http){
         rating: this.rating,
         trailerUrl: this.trailerUrl,
         imbdUrl: this.imbdUrl,
-        image: this.image
+        image: this.image,
+        inTheater: this.inTheater
       }
       // data: this.createForm
     }).then(function(response){
@@ -59,6 +94,7 @@ app.controller('MainController', ['$http', function($http){
       controller.trailerUrl = "";
       controller.imbdUrl = "";
       controller.image = "";
+      controller.inTheater = "";
 
       controller.getMovies();
       controller.changeInclude('home');
@@ -90,30 +126,37 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
-  this.editMovie = function(movie){
+  this.cancelEdit = () => {
+    controller.getMovies();
+    this.includePath = 'partials/home.html';
+  }
+
+  this.editMovie = function(){
     this.includePath = 'partials/home.html'
     $http({
       method: "PUT",
-      url: "/movies/" + movie._id,
-      data: {
-        title: this.updateTitle,
-        description: this.updateDescription,
-        year: this.updateYear,
-        rating: this.updateRating,
-        trailerUrl: this.updateTrailerUrl,
-        imbdUrl: this.updateImbdUrl,
-        image: this.updateImage
-      }
+      url: "/movies/" + controller.movie._id,
+      data: controller.movie
+      // {
+      //   title: this.updateTitle,
+      //   description: this.updateDescription,
+      //   year: this.updateYear,
+      //   rating: this.updateRating,
+      //   trailerUrl: this.updateTrailerUrl,
+      //   imbdUrl: this.updateImbdUrl,
+      //   image: this.updateImage
+      // }
     }).then(function(response){
         controller.getMovies();
-        controller.updateTitle = "";
-        controller.updateDescription = "";
-        controller.updateYear = "";
-        controller.updateRating = "";
-        controller.updateTrailerUrl = "";
-        controller.updateImbdUrl = "";
-        controller.updateImag = "";
-
+        controller.movie = {};
+        // controller.updateTitle = "";
+        // controller.updateDescription = "";
+        // controller.updateYear = "";
+        // controller.updateRating = "";
+        // controller.updateTrailerUrl = "";
+        // controller.updateImbdUrl = "";
+        // controller.updateImag = "";
+        //
     }, (err) => {
       console.log("Error updaing movie");
     });
@@ -136,7 +179,6 @@ app.controller('MainController', ['$http', function($http){
       controller.userLoggedIn = true;
       controller.getUser();
       controller.changeInclude('home');
-
       controller.regUsername = "";
       controller.regPassword = "";
     }, function(){
@@ -157,7 +199,6 @@ app.controller('MainController', ['$http', function($http){
       controller.userLoggedIn = true;
       controller.getUser();
       controller.changeInclude('home');
-
       controller.logUsername = "";
       controller.logPassword = "";
     }, function(){
@@ -195,6 +236,31 @@ app.controller('MainController', ['$http', function($http){
     });
   };
 
+  this.getNetOMDB = (movie_id) => {
+    $http({
+      method: 'GET',
+      url: this.netPullOMDB + movie_id
+    }).then(response => {
+      // this.movies = response.data.Search
+      // console.log(response.data);
+      const new_movie =
+      {
+        _id: movie_id,
+        title: response.data.Title,
+        description: response.data.Plot,
+        year: response.data.Year,
+        rating: response.data.Rated,
+        // trailerUrl: movie url,
+        // imbdURL: imdb url,
+        image: response.data.Poster
+      }
+      controller.savedMovies.push(new_movie);
+      // console.log(new_movie);
+    }),error =>{
+      console.log(error);
+    }
+  }
+
   //Function pulls the subset of movies from the user's database
   this.getUserMovies = () => {
     $http({
@@ -202,7 +268,9 @@ app.controller('MainController', ['$http', function($http){
       url: "/sessions/usermovies"
     }).then( (res) => {
       controller.savedMovies = res.data;
-      // console.log(res);
+      for(let id of controller.user.netMovies){
+        controller.getNetOMDB(id);
+      }
     }, (err) => {
       console.log("Failed to load user movies");
     })
@@ -214,13 +282,15 @@ app.controller('MainController', ['$http', function($http){
       method: "PUT",
       url: "/sessions/addmovie/" + movie._id
     }).then( (res) => {
-      console.log(res);
+      // console.log(res);
+      controller.getUser();
     }, (err) => {
       console.log("Failed to save movie");
     });
   }
 
-  this.removeMovie = (movie) => {
+  //Function removes a movie from the users favorite movie array
+  this.removeUserMovie = (movie) => {
     $http({
       method: "PUT",
       url: "/sessions/removemovie/" + movie._id
@@ -232,6 +302,49 @@ app.controller('MainController', ['$http', function($http){
     });
   }
 
+  //Function checks to see if the movie being removed is an user added movie or a net added movie and calls the apropriate function to remove it
+  this.removeMovie = (movie) => {
+    //If the first two characters of the movie ID are t, then it's a net movie
+    if(movie._id.charAt(0) === "t" && movie._id.charAt(1) === "t"){
+      controller.removeNetMovie(movie);
+      //Else it is a user movie
+    } else {
+      controller.removeUserMovie(movie);
+    }
+  }
+
+  //Function adds a movie to the users netMovie array
+  this.addNetMovie = (movie) => {
+    $http({
+      method: "PUT",
+      url: "/sessions/addnetmovie/" + movie._id
+    }).then( (res) => {
+      // console.log(res);
+      controller.getUser();
+    }, (err) => {
+      console.log("Failed to save net movie");
+    });
+  }
+
+  //Function removes a movie from the users netMovie array
+  this.removeNetMovie = (movie) => {
+    $http({
+      method: "PUT",
+      url: "/sessions/removenetmovie/" + movie._id
+    }).then( (res) => {
+      // console.log(res);
+      // controller.savedMovies = [];
+      controller.getUser();
+    }, (err) => {
+      console.log("Failed to remove net movie");
+    });
+  }
+
+  //Used for testing purposes
+  this.addTestMovie = (movie_id) => {
+    const my_movie = { _id: movie_id };
+    controller.addNetMovie(my_movie);
+  }
 
   //closes controller
 }])

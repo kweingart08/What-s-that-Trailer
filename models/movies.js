@@ -17,7 +17,8 @@ const movieSchema = mongoose.Schema({
   rating: String,
   trailerUrl: String,
   imbdUrl: String,
-  image: String
+  image: String,
+  inTheater: Boolean
 });
 
 module.exports = mongoose.model("Movies", movieSchema);

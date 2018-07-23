@@ -1,5 +1,59 @@
  <div class="update-form-div">
-   <form ng-submit="ctrl.editMovie(ctrl.movie)" id="edit-form">
+   <form ng-submit="ctrl.editMovie()">
+     <fieldset>
+       <legend>Edit Movie</legend>
+
+       <div class="form-input">
+         <label for="title">Title</label>
+         <input type="text" ng-model="ctrl.movie.title" />
+       </div>
+
+       <div class="form-input">
+         <label for="year">Year Released</label>
+         <input type="text" ng-model="ctrl.movie.year" />
+       </div>
+
+       <div class="form-input">
+         <label for="rating">Rating</label>
+         <input type="text" ng-model="ctrl.movie.rating" />
+       </div>
+
+       <div class="form-input">
+         <label for="trailerUrl">Trailer URL</label>
+         <input type="text" ng-model="ctrl.movie.trailerUrl" />
+       </div>
+
+       <div class="form-input">
+         <label for="imbdUrl">IMDB URL</label>
+         <input type="text" ng-model="ctrl.movie.imbdUrl" />
+       </div>
+
+
+       <div class="form-input">
+         <label for="image">Image Link</label>
+         <input type="text" ng-model="ctrl.movie.image" />
+       </div>
+
+
+       <div class="form-input">
+         <label for="description">Movie Description</label>
+         <textarea ng-model="ctrl.movie.description"></textarea></br>
+       </div>
+
+       <div class="form-input">
+         <label for="inTheater">In Theater Now</label>
+         <input ng-model="ctrl.movie.inTheater" type="checkbox" name="inTheater">
+       </div>
+
+       <br>
+       <div class="edit-input">
+         <input type="submit" value="Update Movie" />
+         <button id="noupdate" ng-click="ctrl.cancelEdit()">Cancel</button>
+       </div>
+     </fieldset>
+   </form>
+
+   <!-- <form ng-submit="ctrl.editMovie(ctrl.movie)" id="edit-form">
      <div class="edit-input">
        <label for="title">Title</label>
        <input type="text" name="title" ng-model="ctrl.updateTitle" placeholder="{{ctrl.movie.title}}" class="edit-input"/>
@@ -40,5 +94,5 @@
        <button id="noupdate">Don't Update</button>
      </div>
 
-   </form>
+   </form> -->
  </div>
