@@ -7,18 +7,28 @@
 /******* body and container style ******/
 html {
 	font-family: Raleway;
-	text-align: center;
+	text-align: center;'
+	box-sizing: border-box;
+	height: 100%;
+	position: relative;
 }
 
 body {
   width: 100%;
   margin: 0;
   padding: 0;
+	min-height: 100%;
+	position: relative;
 }
 
 .container {
 	width: 100%;
+	min-width: 650px;
 	margin: auto;
+	min-height: 100vh;
+	display: block;
+	position: relative;
+	padding-bottom: 45px;
 }
 
 /******* nav style ******/
@@ -52,7 +62,7 @@ nav h5:hover {
 }
 
 .header {
-  height: 350px;
+  height: 300px;
   background-image: url("http://baltimoresportsandlife.com/wp-content/uploads/2016/07/Movies.jpg");
   background-size: cover;
   background-position: center;
@@ -198,6 +208,7 @@ input[type="submit"]{
   font-size: 18px;
   padding: 8px;
   height: auto;
+	margin-top: 8px;
 }
 
 input[type="submit"]:hover {
@@ -221,6 +232,13 @@ h2 {
 @media only screen and (max-width: 750px){
 	.movie_info {
 	  width: 100%;
+		font-size: 16px;
+	}
+}
+
+@media only screen and (max-width: 850px) and (min-width: 750px){
+	h4 {
+	  font-size: 14px;
 	}
 }
 
@@ -274,11 +292,55 @@ h2 {
 }
 
 
-#search {
+.search {
 	padding: 5px;
+	width: 30%;
 }
 
 .title-span {
 	font-size: 18px;
 	color: #0f25c5;
 }
+
+
+.url-link {
+	color: grey;
+	text-decoration: none;
+	text-size: 0.75em;
+	text-transform: uppercase;
+}
+
+.url-link:hover {
+	color: red;
+}
+
+.description-note {
+	font-weight: normal;
+}
+
+
+footer {
+  width: 100%;
+  background: black;
+  color: white;
+	position: absolute;
+	bottom: 0;
+}
+
+h6 {
+	font-size: 0.83em;
+}
+
+
+/* on hover */
+.text-on-hover {
+    display: none;
+    border:1px solid #000;
+    height:30px;
+    width:290px;
+    margin-left:10px;
+}
+
+.fa-plus-square:hover .text-on-hover {
+    display: block;
+}​

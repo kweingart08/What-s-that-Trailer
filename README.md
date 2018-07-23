@@ -60,12 +60,11 @@
 ### Approach Taken
   The initial approach was to determine and settle on an idea, once this had taken shape it was a matter of making a chart of what needed to be done. After that we divided up the work based on preferences, skills and importance.
 
-### Unsolved Problems / Additional Items Not Added
-  Some unsolved problem:
-  - TBD
-
+### Additional Items Not Added
   Additional Items to add to app later:
-  - TBD
+  - Rating System to rate movies after watching.
+  - Like function to add likes to the movies
+  - Add a confirmation after clicking the "plus" button that the movie was successfully added to the users site.
 
 ## Link to Live Site
   Here is the link to the live site so you can use the app!

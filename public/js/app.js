@@ -12,13 +12,13 @@ app.controller('MainController', ['$http', function($http){
   this.omdbTitle = ''
   this.searchOMDB = this.baseURL + this.apikey + '&' + this.query + this.omdbTitle;
   this.netPullOMDB = this.baseURL + this.apikey + '&' + this.keyQuery;
+  this.omdbMovies = []
   this.movies = []
   this.savedMovies = [];
 
   this.user = null;
   this.userLoggedIn = false;
-  this.movie = null;
-
+  this.movie = {};
 
   this.includePath = 'partials/home.html'
   this.changeInclude = (path, movie) => {
@@ -26,8 +26,9 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.changeMovie = (movie) => {
-    this.movie = movie;
-    this.includePath = 'partials/edit.html'
+    controller.movie = movie;
+    controller.movie2 = movie;
+    controller.includePath = 'partials/edit.html'
     console.log(movie);
   }
 
@@ -39,7 +40,7 @@ app.controller('MainController', ['$http', function($http){
       method: 'GET',
       url: this.searchOMDB + this.omdbTitle
     }).then(response => {
-      this.movies = response.data.Search
+      this.omdbMovies = response.data.Search
       console.log(response.data);
 
       // controller.Title = "";
@@ -114,30 +115,37 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
-  this.editMovie = function(movie){
+  this.cancelEdit = () => {
+    controller.getMovies();
+    this.includePath = 'partials/home.html';
+  }
+
+  this.editMovie = function(){
     this.includePath = 'partials/home.html'
     $http({
       method: "PUT",
-      url: "/movies/" + movie._id,
-      data: {
-        title: this.updateTitle,
-        description: this.updateDescription,
-        year: this.updateYear,
-        rating: this.updateRating,
-        trailerUrl: this.updateTrailerUrl,
-        imbdUrl: this.updateImbdUrl,
-        image: this.updateImage
-      }
+      url: "/movies/" + controller.movie._id,
+      data: controller.movie
+      // {
+      //   title: this.updateTitle,
+      //   description: this.updateDescription,
+      //   year: this.updateYear,
+      //   rating: this.updateRating,
+      //   trailerUrl: this.updateTrailerUrl,
+      //   imbdUrl: this.updateImbdUrl,
+      //   image: this.updateImage
+      // }
     }).then(function(response){
         controller.getMovies();
-        controller.updateTitle = "";
-        controller.updateDescription = "";
-        controller.updateYear = "";
-        controller.updateRating = "";
-        controller.updateTrailerUrl = "";
-        controller.updateImbdUrl = "";
-        controller.updateImag = "";
-
+        controller.movie = {};
+        // controller.updateTitle = "";
+        // controller.updateDescription = "";
+        // controller.updateYear = "";
+        // controller.updateRating = "";
+        // controller.updateTrailerUrl = "";
+        // controller.updateImbdUrl = "";
+        // controller.updateImag = "";
+        //
     }, (err) => {
       console.log("Error updaing movie");
     });
@@ -160,7 +168,6 @@ app.controller('MainController', ['$http', function($http){
       controller.userLoggedIn = true;
       controller.getUser();
       controller.changeInclude('home');
-
       controller.regUsername = "";
       controller.regPassword = "";
     }, function(){
@@ -181,7 +188,6 @@ app.controller('MainController', ['$http', function($http){
       controller.userLoggedIn = true;
       controller.getUser();
       controller.changeInclude('home');
-
       controller.logUsername = "";
       controller.logPassword = "";
     }, function(){
@@ -237,11 +243,8 @@ app.controller('MainController', ['$http', function($http){
         // imbdURL: imdb url,
         image: response.data.Poster
       }
-
       controller.savedMovies.push(new_movie);
-
-      console.log(new_movie);
-
+      // console.log(new_movie);
     }),error =>{
       console.log(error);
     }
@@ -268,7 +271,7 @@ app.controller('MainController', ['$http', function($http){
       method: "PUT",
       url: "/sessions/addmovie/" + movie._id
     }).then( (res) => {
-      console.log(res);
+      // console.log(res);
       controller.getUser();
     }, (err) => {
       console.log("Failed to save movie");
@@ -298,7 +301,6 @@ app.controller('MainController', ['$http', function($http){
       controller.removeUserMovie(movie);
     }
   }
-
 
   //Function adds a movie to the users netMovie array
   this.addNetMovie = (movie) => {
