@@ -2,7 +2,8 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  const mykey = config.SECRET_KEY;
+  const mykey = "543628d2";
+  // const mykey = config.SECRET_KEY;
 
   // this.showSearch = false;
   // this.showButton = true;
