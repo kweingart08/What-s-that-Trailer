@@ -9,7 +9,7 @@ app.controller('MainController', ['$http', function($http){
 
   // USE for "production"
   // let mykey = "";
-  this.mykey = "";
+  this.mykey = [];
 
   this.getAPI = () => {
     $http({
@@ -35,7 +35,7 @@ app.controller('MainController', ['$http', function($http){
 
 
   this.baseURL = 'http://www.omdbapi.com/?'
-  this.apikey = 'apikey=' + this.mykey
+  this.apikey = 'apikey=' + this.mykey[0]
   this.query = 's='
   this.keyQuery = "i=";
 
