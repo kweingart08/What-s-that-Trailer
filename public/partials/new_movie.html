@@ -55,45 +55,44 @@
       </fieldset>
     </form>
     <!-- OMDB Search -->
+
+    <fieldset>
     <form  ng-submit="ctrl.getOMDB()">
-      <fieldset>
         <legend>Add OMDB Movie</legend>
-<!-- ng-repeat="omdb in ctrl.omdbMovies" -->
         <div class="form-input">
           <label for="title">OMDB Title</label>
           <input type="text" name="title" ng-model="ctrl.omdbTitle"/>
-                <!-- for the console log -->
           <input type="submit" value="Search OMDB"></input>
         </div>
     </form>
 
     <div class="all-movies">
       <!-- for each movie create a new div -->
-      <div class="movie_info_omdb" ng-repeat="omdb in ctrl.omdbMovies">
+      <div class="movie_info" ng-repeat="omdb in ctrl.omdbMovies">
         <!-- div for movie picture -->
-        <!-- <div class="movie-pic">
-          <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image">
-        </div> -->
+        <div class="movie-pic">
+          <img ng-src="{{omdb.Poster}}" alt="{{omdb.Title}}" class="movie-image">
+        </div>
         <!-- div for movie info and buttons -->
         <div class="movie-content">
           <!-- top div that includes info -->
           <div class="info">
             <h4><span class="title-span">TITLE:</span> {{omdb.Title}}</h4>
             <h4><span class="title-span">YEAR RELEASED:</span> {{omdb.Year}}</h4>
+            <!-- <h4><span class="title-span">DESCRIPTION:</span> <span class="description-note">{{omdb.description | limitTo: 110}}</span></h4> -->
           </div>
+          <!-- bottom div inclues buttons to click -->
           <div class="options">
             <!-- add movie to watch list icon -->
-            <form ng-submit="ctrl.addNetMovie(omdb.imdbID)">
-              <input type="submit" value="Add OMDB Movie">
-            </form>
+            <i class="far fa-plus-square" ng-click="ctrl.addNetMovie(omdb.imdbID)" ng-if="ctrl.userLoggedIn" title="Add to My List"></i>
           </div>
         </div>
       </div>
     </div>
-
-        </br>
-
       </fieldset>
     </form>
+  </br>
+</br>
+
   </div>
 </div>

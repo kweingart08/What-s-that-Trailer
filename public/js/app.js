@@ -4,7 +4,7 @@ app.controller('MainController', ['$http', function($http){
   const controller = this;
 
   // USE for development
-  let mykey = config.SECRET_KEY;
+  this.mykey = config.SECRET_KEY;
 
   // USE for "production"
   // let mykey = "";
@@ -12,9 +12,9 @@ app.controller('MainController', ['$http', function($http){
   this.getAPI = () => {
     $http({
       method: "GET",
-      url: "/config"
+      url: "/config",
     }).then(function(response){
-      mykey = response.data;
+      controller.mykey = response.data;
     }, function(){
       console.log(error);
     })
@@ -32,7 +32,7 @@ app.controller('MainController', ['$http', function($http){
 
 
   this.baseURL = 'http://www.omdbapi.com/?'
-  this.apikey = 'apikey=' + mykey
+  this.apikey = 'apikey=' + this.mykey
   this.query = 's='
   this.keyQuery = "i=";
 

@@ -87,9 +87,9 @@
             <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn" title="Add to My List"></i>
             <!-- edit movie icon -->
             <!-- need to pass this movie to the edit form -->
-            <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn"><i class="far fa-edit"></i></a>
+            <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn" title="Edit Movie"><i class="far fa-edit"></i></a>
             <!-- delete movie icon -->
-            <i class="far fa-trash-alt" ng-if="ctrl.userLoggedIn" ng-click='ctrl.deleteMovie(movie)'></i>
+            <i class="far fa-trash-alt" ng-if="ctrl.userLoggedIn" ng-click='ctrl.deleteMovie(movie)' title="Delete Movie"></i>
           </div>
         </div>
       </div>
