@@ -9,15 +9,14 @@ app.controller('MainController', ['$http', function($http){
 
   // USE for "production"
   // let mykey = '';
-  let mykey = "543628d2";
+  let mykey = '543628d2';
 
   this.getAPI = () => {
     $http({
       method: "GET",
-      url: "/config",
-      data: this.mykey
+      url: "/config"
     }).then(function(response){
-      controller.key = response.data;
+      controller.mykey = response.data;
       console.log(response);
     }, function(){
       console.log(error);
