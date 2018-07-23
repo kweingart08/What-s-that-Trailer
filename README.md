@@ -11,7 +11,8 @@
     Google Chrome - [https://www.google.com/chrome/?brand=CHBD&gclid=CjwKCAjwma3ZBRBwEiwA-CsblPyvpR22B4RBmScNdFsqzR9hq_NR4nT8yE9sKUWpPhPRTU6JPPvV-RoCpfMQAvD_BwE&gclsrc=aw.ds&dclid=CNiA3IWs5dsCFQ4EaQodm50Pyw]
 
 ### Technologies Used
-    Tehnologies Used While Building the App:
+  Technologies Used While Building the App:
+
 
     Atom:
       - Express
@@ -26,7 +27,7 @@
 
 
 ### Details on the App:
-    This App was created with a group of three developers collaborating and using git and github for version control.
+  This App was created with a group of three developers collaborating and using git and github for version control.
 
     The App consists of an MVC framework:
     - Models:
@@ -64,7 +65,7 @@
   - TBD
 
   Additional Items to add to app later:
-  - TBD 
+  - TBD
 
 ## Link to Live Site
   Here is the link to the live site so you can use the app!
