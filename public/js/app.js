@@ -3,15 +3,18 @@ const app = angular.module('MoviesApp', [])
 app.controller('MainController', ['$http', function($http){
   const controller = this;
 
-  // let mykey = config.SECRET_KEY;
-  let mykey = "";
+  // USE for development
+  let mykey = config.SECRET_KEY;
+
+  // USE for "production"
+  // let mykey = "";
 
   this.getAPI = () => {
     $http({
       method: "GET",
       url: "/config"
     }).then(function(response){
-      mykey = response.data
+      mykey = response.data;
     }, function(){
       console.log(error);
     })
