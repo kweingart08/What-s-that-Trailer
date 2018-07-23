@@ -344,3 +344,39 @@ h6 {
 .fa-plus-square:hover .text-on-hover {
     display: block;
 }​
+
+.userImage, #myPic {
+	width: 200px;
+	height: 200px;
+	border-radius: 200px;
+	border: 2px solid black;
+}
+
+.flexy {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.flexy2 {
+	display: flex;
+	flex-wrap: wrap;
+	/* justify-content: flex-start;	 */
+}
+
+.leftUser {
+	width: 30%;
+	min-width: 200px;
+	margin: 5px 0;
+}
+
+.rightUser {
+	width: 60%;
+	min-width: 200px;
+	margin: 5px 0;
+}
+
+.userSet {
+	width: 80%;
+	margin: 30px auto;
+}
