@@ -14,7 +14,6 @@ app.controller('MainController', ['$http', function($http){
       method: "GET",
       url: "/config"
     }).then(function(response){
-      console.log(response);
       mykey = response.data;
     }, function(){
       console.log(error);
