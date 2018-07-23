@@ -5,11 +5,10 @@ app.controller('MainController', ['$http', function($http){
 
 
   // USE for development
-  // let mykey = config.SECRET_KEY;
+  let mykey = config.SECRET_KEY;
 
   // USE for "production"
   // let mykey = '';
-  let mykey = '543628d2';
 
   this.getAPI = () => {
     $http({
