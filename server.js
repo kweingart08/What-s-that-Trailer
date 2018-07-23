@@ -47,6 +47,7 @@ app.get("/log", (req, res) => {
 
 app.get("/config", (req,res) => {
   const api = process.env.SECRET_KEY;
+  console.log(api);
   res.json(api);
 });
 

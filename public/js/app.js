@@ -7,7 +7,7 @@ app.controller('MainController', ['$http', function($http){
   // let mykey = config.SECRET_KEY;
 
   // USE for "production"
-  let mykey;
+  let mykey = "";
 
   this.getAPI = () => {
     $http({
