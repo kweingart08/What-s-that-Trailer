@@ -30,28 +30,29 @@
   This App was created with a group of three developers collaborating and using git and github for version control.
   The App consists of an MVC framework:
     - Models:
-     - Movies - There is a movie model schema to create a Movie
-     - Users - There is a user model schema used to create the different users for the database.
+      - Movies - There is a movie model schema to create a Movie.
+      - Users - There is a user model schema used to create the different users for the database.
     - Views:
-     - Angular was used for this so a views sections was not used, but partials and html files were used to show the different views for the app. There were multiple public files created:
-       - index.html - index that allows for different partials to be viewed depending on what is clicked.
-       - about.html - about the app
-       - edit.html - edit movie page
-       - footer.html - footer partial
-       - home.html - main page
-       - login.html - login page
-       - nav.html - navigation bar
-       - new_movie.html - new movie page
-       - register.html - register page
-       - user.html - user page
-    - Controllers:
-      - Movies - this controller includes the get, post, put, and delete routes for movies.
-      - Sessions - this controller allows users to sign in and start their session online.
-      - Users - this controller allows the app to create a User and go to the sessions controller.
+      - Angular was used for this so a views sections was not used, but partials and html files were used to show the different views for the app. There were multiple public files created:
+      - There were multiple public files created:
+        - index.html - index that allows for different partials to be viewed depending on what is clicked.
+        - about.html - about the app
+        - edit.html - edit movie page
+        - footer.html - footer partial
+        - home.html - main page
+        - login.html - login page
+        - nav.html - navigation bar
+        - new_movie.html - new movie page
+        - register.html - register page
+        - user.html - user page
+      - Controllers:
+        - Movies - this controller includes the get, post, put, and delete routes for movies.
+        - Users - this controller allows the app to create a User and go to the sessions controller.
+        - Sessions - this controller allows users to sign in and start their session online.
 
-    This app also includes full CRUD and authorization (sign up / log in) functionality with encrypted passwords & an authorization flow.
+      This app also includes full CRUD and authorization (sign up / log in) functionality with encrypted passwords & an authorization flow.
 
-    This app pulls from a third party API (OMDb API) which is a RESTful web service to obtain movie information.
+      This app pulls from a third party API (OMDb API) which is a RESTful web service to obtain movie information.
 
 ## Development
   These development notes will describe the approach taken when building the application as well as some of the unsolved problems and additions for the future.
