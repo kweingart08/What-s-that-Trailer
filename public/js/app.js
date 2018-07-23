@@ -8,17 +8,16 @@ app.controller('MainController', ['$http', function($http){
   // let mykey = config.SECRET_KEY;
 
   // USE for "production"
-  // let mykey = "";
-
+  // let mykey = '';
+  let mykey = "543628d2";
 
   this.getAPI = () => {
     $http({
       method: "GET",
-      url: "/config"
-      // data: this.mykey
-    }).then((response)=>{
-      controller.mykey = response.data;
-      console.log(controller.mykey);
+      url: "/config",
+      data: this.mykey
+    }).then(function(response){
+      controller.key = response.data;
       console.log(response);
     }, function(){
       console.log(error);
@@ -35,13 +34,12 @@ app.controller('MainController', ['$http', function($http){
 
 
   this.baseURL = 'http://www.omdbapi.com/?'
-  this.mykey = '';
-  this.apikey = 'apikey=' + this.mykey
+  this.apikey = 'apikey=' + mykey
   this.query = 's='
   this.keyQuery = "i=";
 
   this.omdbTitle = ''
-  // this.searchOMDB = this.baseURL + this.apikey + '&' + this.query + this.omdbTitle;
+  this.searchOMDB = this.baseURL + this.apikey + '&' + this.query + this.omdbTitle;
   this.netPullOMDB = this.baseURL + this.apikey + '&' + this.keyQuery;
   this.omdbMovies = []
   this.movies = []
@@ -69,7 +67,7 @@ app.controller('MainController', ['$http', function($http){
   this.getOMDB = () => {
     $http({
       method: 'GET',
-      url: this.baseURL + this.apikey + '&' + this.query + this.omdbTitle
+      url: this.searchOMDB + this.omdbTitle
     }).then(response => {
       this.omdbMovies = response.data.Search
       console.log(response.data);
