@@ -46,7 +46,9 @@ app.get("/log", (req, res) => {
 });
 
 app.get("/config", (req,res) => {
-  res.json(process.env.SECRET_KEY);
+  const api = process.env.SECRET_KEY;
+  console.log(api);
+  res.json(api);
 });
 
 //Listen Route
