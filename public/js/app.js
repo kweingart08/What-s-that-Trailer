@@ -13,12 +13,12 @@ app.controller('MainController', ['$http', function($http){
 
   this.getAPI = () => {
     $http({
-      method: "POST",
-      url: "/config",
-      data: this.mykey
+      method: "GET",
+      url: "/config"
+      // data: this.mykey
     }).then((response)=>{
-      this.mykey = response.data;
-      console.log(this.mykey);
+      controller.mykey = response.data;
+      console.log(controller.mykey);
       console.log(response);
     }, function(){
       console.log(error);
@@ -35,7 +35,7 @@ app.controller('MainController', ['$http', function($http){
 
 
   this.baseURL = 'http://www.omdbapi.com/?'
-  this.apikey = 'apikey=' + this.mykey[0]
+  this.apikey = 'apikey=' + this.mykey
   this.query = 's='
   this.keyQuery = "i=";
 
