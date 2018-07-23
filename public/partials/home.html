@@ -6,16 +6,25 @@
   <div class="home-content">
     <!-- link to add movie to home content list - will move you to the bottom of page where the form is -->
     <div class="add_new_movie">
-      <label for="Search by">
-        <input type="text" placeholder="Movie Title" ng-model="searchBox" id="search">
-      </label>
+
     </div>
 
     <!-- div for movie list title -->
     <div class="movie-list">
-      <h2>Movie List</h2>
+      <h2>Movies in Theater Now</h2>
+      <div class="new_movie">
+        <label for="Search by">Search Movies in Theater</label>
+          <input type="text" placeholder="Movie Title" ng-model="searchBox" class="search">
+      </div>
     </div>
 
+    <div class="movie-list">
+      <h2>Users Added Movie List</h2>
+      <div class="new_movie">
+        <label for="Search by">Search Movies from Users List</label>
+          <input type="text" placeholder="Movie Title" ng-model="searchBox" class="search">
+      </div>
+    </div>
     <!-- div to hold all movie content divs -->
     <div class="all-movies">
       <!-- for each movie create a new div -->
