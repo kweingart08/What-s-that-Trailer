@@ -2,8 +2,22 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  const mykey = "543628d2";
-  // const mykey = config.SECRET_KEY;
+
+  // let mykey = config.SECRET_KEY;
+  let mykey = "";
+
+  this.getAPI = () => {
+    $http({
+      method: "GET",
+      url: "/config"
+    }).then(function(response){
+      mykey = response.data
+    }, function(){
+      console.log(error);
+    })
+  }
+
+  this.getAPI();
 
   // this.showSearch = false;
   // this.showButton = true;
@@ -226,6 +240,7 @@ app.controller('MainController', ['$http', function($http){
       console.log("Error Getting User");
     });
   };
+
 
   this.getNetOMDB = (movie_id) => {
     $http({
