@@ -297,8 +297,9 @@ h2 {
 	color: grey;
 	text-decoration: none;
 	text-size: 0.75em;
+	text-transform: uppercase;
 }
 
 .url-link:hover {
-	color: blue;
+	color: red;
 }
