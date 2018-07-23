@@ -303,3 +303,7 @@ h2 {
 .url-link:hover {
 	color: red;
 }
+
+.description-note {
+	font-weight: normal;
+}
