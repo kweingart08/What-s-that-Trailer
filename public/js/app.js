@@ -2,7 +2,7 @@ const app = angular.module('MoviesApp', [])
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  const mykey = SECRET_KEY;
+  const mykey = config.SECRET_KEY;
 
   this.baseURL = 'http://www.omdbapi.com/?'
   this.apikey = 'apikey=' + mykey
