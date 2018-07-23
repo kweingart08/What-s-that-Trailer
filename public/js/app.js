@@ -5,10 +5,10 @@ app.controller('MainController', ['$http', function($http){
 
 
   // USE for development
-  // const mykey = config.SECRET_KEY;
+  const mykey = config.SECRET_KEY;
 
   // USE for "production"
-  this.mykey = '';
+  // let mykey = '';
 
   this.getAPI = () => {
     $http({
@@ -32,7 +32,7 @@ app.controller('MainController', ['$http', function($http){
 
 
   this.baseURL = 'https://www.omdbapi.com/?'
-  this.apikey = 'apikey=' + this.mykey
+  this.apikey = 'apikey=' + mykey
   this.query = 's='
   this.keyQuery = "i=";
 
