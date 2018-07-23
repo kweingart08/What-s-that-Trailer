@@ -43,7 +43,7 @@ app.controller('MainController', ['$http', function($http){
 
   this.h1 = "What's That Trailer"
 
-  //OMDB search
+  //OMDB Search
   this.getOMDB = () => {
     $http({
       method: 'GET',
@@ -51,21 +51,11 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       this.omdbMovies = response.data.Search
       console.log(response.data);
-
-      // controller.Title = "";
-      // controller.Plot = "";
-      // controller.Year = "";
-      // controller.Rated = "";
-      //
-      // controller.Poster = "";
-      //
-      // controller.getMovies();
-      // controller.changeInclude('home');
-
     }),error =>{
       console.log(error);
     }
   }
+
 
   this.createMovie = function(){
     $http({
@@ -317,7 +307,7 @@ app.controller('MainController', ['$http', function($http){
   this.addNetMovie = (movie) => {
     $http({
       method: "PUT",
-      url: "/sessions/addnetmovie/" + movie._id
+      url: "/sessions/addnetmovie/" + movie
     }).then( (res) => {
       // console.log(res);
       controller.getUser();
