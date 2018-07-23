@@ -379,4 +379,28 @@ h6 {
 .userSet {
 	width: 80%;
 	margin: 30px auto;
+	/* background: #B6B6B6; */
+}
+
+.userLinks, .userLinks:visited {
+	color: black;
+	text-decoration: underline;
+}
+
+.userLinks:hover {
+	color: #0f25c5;
+	text-decoration: underline;
+}
+
+.aboutPage {
+	width: 80%;
+	margin: auto;
+}
+
+.alignLeft {
+	text-align: left;
+}
+
+.aboutPage p {
+	font-size: 1.2em;
 }
