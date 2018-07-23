@@ -4,7 +4,7 @@ app.controller('MainController', ['$http', function($http){
   const controller = this;
 
   // USE for development
-  // let mykey = config.SECRET_KEY;
+  this.mykey = config.SECRET_KEY;
 
   // USE for "production"
   // let mykey = "";
