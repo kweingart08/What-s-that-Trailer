@@ -329,3 +329,17 @@ footer {
 h6 {
 	font-size: 0.83em;
 }
+
+
+/* on hover */
+.text-on-hover {
+    display: none;
+    border:1px solid #000;
+    height:30px;
+    width:290px;
+    margin-left:10px;
+}
+
+.fa-plus-square:hover .text-on-hover {
+    display: block;
+}​

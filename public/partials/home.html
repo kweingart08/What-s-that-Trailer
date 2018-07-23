@@ -38,7 +38,7 @@
           <!-- bottom div inclues buttons to click -->
           <div class="options">
             <!-- add movie to watch list icon -->
-            <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn"></i>
+            <i class="far fa-plus-square" ng-click="ctrl.addMovie(movie)" ng-if="ctrl.userLoggedIn" title="Add to My List"></i>
             <!-- edit movie icon -->
             <!-- need to pass this movie to the edit form -->
             <a ng-click="ctrl.changeMovie(movie)" ng-if="ctrl.userLoggedIn"><i class="far fa-edit"></i></a>
