@@ -1,3 +1,5 @@
 var config = {
-  SECRET_KEY: '543628d2'
+  SECRET_KEY: process.env.SECRET_KEY
 }
+
+console.log(config.SECRET_KEY);
