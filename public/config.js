@@ -1,5 +1,3 @@
-const SECRET_KEY = process.env.SECRET_KEY
-
-
-
-console.log(SECRET_KEY);
+var config = {
+  SECRET_KEY: '543628d2'
+}
